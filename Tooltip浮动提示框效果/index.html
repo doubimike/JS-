@@ -45,32 +45,30 @@
 		var getel = function(id){
 			return document.getElementById(id);
 		}
-		var a = getel("tooltip1");
 
 		var tooltipbox = document.createElement("div");
 
-		tooltipbox.className = "tooltipbox"
-
-		tooltipbox.innerHTML = "中华人民共和国"
-
-		tooltipbox.style.position = "absolute";
-
-
-
-		a.onmouseover = function () {
-			a.appendChild(tooltipbox);	
-			tooltipbox.style.display = "block"	  ;
+		function showtooltip (obj, html) {
+			tooltipbox.className = "tooltipbox";
+			tooltipbox.innerHTML = html;
+			tooltipbox.style.position = "absolute";
+			tooltipbox.style.display = "block";
+			obj.appendChild(tooltipbox);
 		}
 
-		a.onmouseout = function () {
+		var t1 = getel("tooltip1");
+		var t2 = getel("tooltip2");
+
+		t1.onmouseover = function () {
+			  showtooltip(this,"中华人民共和国");
+		}
+		
+		t1.onmouseout = function () {
 			 tooltipbox.style.display = "none" ;
 
 		}
 
-		function showtooltip (id) {
-			 getEl(id);
 
-		}
 
 	</script>
 </body>
