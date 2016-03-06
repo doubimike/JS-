@@ -6,6 +6,7 @@
 	<style>
 		body {
 			background: url(bg.jpg);
+			overflow: scroll;
 		}
 
 		#demo {
@@ -46,29 +47,76 @@
 			return document.getElementById(id);
 		}
 
-		var tooltipbox = document.createElement("div");
-
-		function showtooltip (obj, html) {
+		function showtooltip (obj, id, html, width) {
+			var tooltipbox = document.createElement("div");
+			obj.appendChild(tooltipbox);
 			tooltipbox.className = "tooltipbox";
 			tooltipbox.innerHTML = html;
+			tooltipbox.id = id;
+			
 			tooltipbox.style.position = "absolute";
 			tooltipbox.style.display = "block";
-			obj.appendChild(tooltipbox);
+			tooltipbox.style.width = width ? width + "px" : "auto";
+			var left = obj.offsetLeft;
+			if (left+tooltipbox.offsetWidth>document.body.offsetWidth) {
+				left= - tooltipbox.offsetWidth + document.body.offsetWidth ;
+			}
+
+			var top = obj.offsetTop;
+			tooltipbox.style.left = left + "px";
+			tooltipbox.style.top = top + obj.offsetHeight + "px";
+			
+			obj.onmouseleave = function () {
+				setTimeout(function(){tooltipbox.style.display = "none";}, 200);
+			};
 		}
 
-		var t1 = getel("tooltip1");
-		var t2 = getel("tooltip2");
+		var demo = getel("demo");
 
-		t1.onmouseover = function () {
-			  showtooltip(this,"中华人民共和国");
-		}
-		
-		t1.onmouseout = function () {
-			 tooltipbox.style.display = "none" ;
+		demo.addEventListener("mouseover", function(e){
+			var event = e;
+			var target = event.target;
+			var _id;
+			var _html;
+			var _width;
 
-		}
+			if (target.className == "tooltip") {
+				switch (target.id) {
+					case "tooltip1":
+						_id = "t1";
+						_html = "中华人民共和国";
+						break;
+					case "tooltip2":
+						_id = "t2";
+						_html = "美国篮球职业联赛";
+						break;
+					case "tooltip3":
+	                    _id = "t3";
+	                    _html = "<h2>春晓</h2><p>春眠不觉晓，</p><p>处处闻啼鸟。</p><p>夜来风雨声，</p><p>花落知多少。</p>";
+	                    _width = 100;
+	                    break;
+	                case "tooltip4":
+	                    _id = "t4";
+	                    _html = '<img src="1.jpg" width="500" />';
+	                    _width = 520;
+	                    break;
+	                case "tooltip5":
+	                    _id = "t5";
+	                    _html = '<div><img src="2.jpg" alt=""/><p><strong>昵称一定要长</strong></p><p>我的简介</p></div>';
+	                    _width = 300;
+	                    break;
+	                case "tooltip6":
+	                    _id = "t6";
+	                    _html = '<iframe src="http://www.imooc.com/" width="480" height="300"></iframe>';
+	                    _width = 500;
+	                    break;
+	                default:
+	                    return false;
+				}
 
-
+				showtooltip(target, _id, _html, _width);
+			}
+		});
 
 	</script>
 </body>
