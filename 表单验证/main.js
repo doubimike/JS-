@@ -9,13 +9,14 @@ window.onload = function(){
 	var pwd2_msg = aP[2];
 	var count = document.getElementById('count');
 	var aEm = document.getElementsByTagName('em');
+	var Em = document.getElementById('em')
 	var oName_length = 0;
 	var pwd_length = 0;
 	var re = /[^\w\u4e00-\u9fa5]/;
 
 //用户名
 	oName.onfocus = function (){
-		name_msg.style.display = "block";
+		name_msg.style.visibility = "visible";
 	}
 
 	oName.onkeyup = function (){
@@ -51,7 +52,9 @@ window.onload = function(){
 
 //密码	
 	pwd.onfocus = function () {
-		pwd_msg.style.display = "block";
+		pwd_msg.style.visibility = "visible";
+		em.style.visibility = "visible";
+
 	}
 
 	pwd.onkeyup = function () {
@@ -61,14 +64,14 @@ window.onload = function(){
 			aEm[2].style.color = "initial";
 		  	aEm[1].style.color = "red";
 		  	pwd2.disabled = 0;
-		  	pwd2_msg.style.display = "block";
+		  	pwd2_msg.style.visibility = "visible";
 		  }
 
 		if ( pwd_length < 5){
 			aEm[1].style.color = "initial";
 		  	aEm[0].style.color = "red";
 		  	pwd2.disabled = 1;
-		  	pwd2_msg.style.display = "none";
+		  	pwd2_msg.style.visibility = "hidden";
 		}
 
 		if ( pwd_length > 10 ){
