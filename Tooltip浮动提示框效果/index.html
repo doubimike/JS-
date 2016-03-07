@@ -6,7 +6,6 @@
 	<style>
 		body {
 			background: url(bg.jpg);
-			overflow: scroll;
 		}
 
 		#demo {
@@ -43,44 +42,69 @@
 	</div>
 
 	<script>
+	//绑定事件的统一方法：
+	function addEvent(element, event, callbackFunction) {
+	    if (element.addEventListener) {
+	        element.addEventListener(event, callbackFunction, false);
+	    } else if (element.attachEvent) {
+	        element.attachEvent('on' + event, callbackFunction);
+	    }
+	}
 		var getel = function(id){
 			return document.getElementById(id);
 		}
 
-		function showtooltip (obj, id, html, width) {
-			var tooltipbox = document.createElement("div");
-			obj.appendChild(tooltipbox);
-			tooltipbox.className = "tooltipbox";
-			tooltipbox.innerHTML = html;
-			tooltipbox.id = id;
-			
-			tooltipbox.style.position = "absolute";
-			tooltipbox.style.display = "block";
-			tooltipbox.style.width = width ? width + "px" : "auto";
-			var left = obj.offsetLeft;
-			if (left+tooltipbox.offsetWidth>document.body.offsetWidth) {
-				left= - tooltipbox.offsetWidth + document.body.offsetWidth ;
-			}
-
-			var top = obj.offsetTop;
-			tooltipbox.style.left = left + "px";
-			tooltipbox.style.top = top + obj.offsetHeight + "px";
-			
-			obj.onmouseleave = function () {
-				setTimeout(function(){tooltipbox.style.display = "none";}, 200);
-			};
-		}
-
 		var demo = getel("demo");
 
-		demo.addEventListener("mouseover", function(e){
-			var event = e;
-			var target = event.target;
-			var _id;
-			var _html;
-			var _width;
+		var toolTipBoxClass = "tooltipbox";
+
+		var isIE = navigator.userAgent.indexOf("MSIE") > -1;
+
+		function showtooltip (obj, id, html, width) {
+			if(getel(id)==null){
+				var tooltipbox = document.createElement("div");
+				tooltipbox.className = toolTipBoxClass;
+				tooltipbox.innerHTML = html;
+				tooltipbox.id = id;
+				obj.appendChild(tooltipbox);
+				
+				tooltipbox.style.width = width ? width + "px" : "auto";
+
+				if (!width && isIE){
+					tooltipbox.style.width = tooltipbox.offsetWidth;
+				}
+
+				tooltipbox.style.position = "absolute";
+
+				var left = obj.offsetLeft;
+				if (left + tooltipbox.offsetWidth > document.body.offsetWidth) {
+					left = document.body.offsetWidth - tooltipbox.offsetWidth - demo.offsetLeft;
+					if (left < 0) left = 0;
+				}
+
+				var top = obj.offsetTop;
+				tooltipbox.style.left = left + "px";
+				tooltipbox.style.top = top + obj.offsetHeight + "px";
+				
+				addEvent(obj, "mouseleave", function(){
+					setTimeout(function(){
+						tooltipbox.style.display = "none";
+					}, 200);
+				});
+			}
+			else {
+				getel(id).style.display = "block";
+			}		
+		}
+
+		addEvent(demo, "mouseover", function(e){
+			var event = e || window.event;
+			var target = event.target || event.srcElement;
 
 			if (target.className == "tooltip") {
+				var _id;
+				var _html;
+				var _width;
 				switch (target.id) {
 					case "tooltip1":
 						_id = "t1";
