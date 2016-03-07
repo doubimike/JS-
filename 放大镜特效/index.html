@@ -11,6 +11,7 @@
 		#small-box, #big-box {
 			border: 1px solid #ccc;
 			float: left;
+			font-size: 0;
 		}
 
 		#big-box {
@@ -52,7 +53,14 @@
 			return document.getElementById(id); 
 		}
 
+
+
 		window.onload = function () {
+			var bigboxheight=120*654/255;
+			var bigboxwidth=160*1024/400;
+			ge("big-box").style.height = bigboxheight+"px";
+			ge("big-box").style.width = bigboxwidth+"px";
+
 			var smallbox = ge("small-box");
 
 			 smallbox.onmouseover = function () {
