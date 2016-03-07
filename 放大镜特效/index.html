@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜特效</title>
+	<style>
+		body {
+			margin: 0;
+		}
+
+		#small-box, #big-box {
+			border: 1px solid #ccc;
+			float: left;
+		}
+
+		#big-box {
+			width: 400px;
+			height: 300px;
+			overflow: hidden;
+			position: relative;
+		}
+
+		#small-box {
+			position: relative;
+		}
+
+		#hover {
+			width: 160px;
+			height: 120px;
+			background: #ffffcc;
+			position: absolute;
+			left: 0;
+			top: 0;
+			opacity: .5;
+			display: none;
+		}
+
+		#bigpic {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+
+
+		
+
+	</style>
+
+	<script>
+		function ge (id) {
+			return document.getElementById(id); 
+		}
+
+		window.onload = function () {
+			var smallbox = ge("small-box");
+
+			 smallbox.onmouseover = function () {
+			 	 hover.style.display = "block"; 
+			 	}
+
+			 smallbox.onmousemove = function (e) {
+			 	var event = e;
+			 	 var mousex = event.clientX;
+			 	 var mousey = event.clientY;
+			 	 var left = mousex - smallbox.offsetLeft - 80;
+			 	 var top = mousey - smallbox.offsetTop - 60;
+			 	 // if (left < 0) left = 0;
+			 	 // if (top < 0 ) top = 0;
+			 	 hover.style.left = left + "px";
+			 	 hover.style.top = top + "px";
+
+			 	 var actualx = ge("bigpic").offsetWidth*mousex/ge("smallpic").offsetWidth;
+			 	 var actualy = ge("bigpic").offsetHeight*mousey/ge("smallpic").offsetHeight;
+			 	 console.log(actualy);
+
+			 	 ge("bigpic").style.top = -(actualy) + "px";
+			 	 ge("bigpic").style.left = -(actualx -ge("big-box").offsetWidth) + "px";
+
+
+			 }	 
+		}
+	</script>
+</head>
+<body>
+	 <div id="demo" style="overflow: hidden;">
+	 	<div id="small-box">
+	 		<img src="macbook-small.jpg" alt="" id="smallpic">
+	 		<div id="hover">
+	 			
+	 		</div>
+	 	</div>
+
+	 	<div id="big-box">
+	 		<img src="macbook-big.jpg" alt="" id="bigpic">
+	 	</div>
+	 </div>
+</body>
+</html>
