@@ -44,6 +44,7 @@
 		var g = function (id) {
 			 return document.getElementById(id) ;
 		}
+
 		window.onload = function () {
 			 var container  = g("container");
 			 var list = g("list");
@@ -52,8 +53,7 @@
 			 var next = g("next");
 			 var index = 1;
 			 var animating = 0;
-			 var timer;
-			 
+			 var timer;		 
 
 			 function dotchange (){
 			 	for (var i = buttons.length - 1; i >= 0; i--) {
@@ -84,22 +84,16 @@
 			 		else {
 			 			animating = 0;
 			 			list.style.left = newleft + "px" ;
-					 		  if (newleft == -3600 ) {
-					 		  	list.style.left =  -600+"px";
-					 		  }
-					 		  else if (newleft == 0) {
-					 		  	list.style.left =  -3000 + "px";
-					 		  } 
-
+				 		  if (newleft == -3600 ) {
+				 		  	list.style.left =  -600+"px";
+				 		  }
+				 		  else if (newleft == 0) {
+				 		  	list.style.left =  -3000 + "px";
+				 		  } 
 			 		}
-
-
-
 			 	}
 
 			 	go();  
-			 		  
-
 			 }
 
 			 prev.onclick = function () {
@@ -108,8 +102,7 @@
 				 	 index -= 1;
 				 	 if (index == 0) index = 5;
 				 	 dotchange();
-			 	}
-			 	
+			 	}			 	
 			 }
 
 			 next.onclick = function () {
@@ -119,7 +112,6 @@
 			 	 if (index == 6) index = 1;
 			 	 dotchange();
 			 	}
-
 			 }
 
 			 for (var i = 0; i < buttons.length; i++) {
@@ -136,20 +128,18 @@
 
 			 function play () {
 			 	 timer = setInterval(next.onclick, 3000) ;
-
 			 }
 
 			 function stop () {
 			 	 clearInterval(timer) ;
-
 			 }
 
 			 container.onmouseover = stop;
 			 container.onmouseout = play;
 
 			 play();
-
 		}
+		
 	</script>
 </head>
 <body>
