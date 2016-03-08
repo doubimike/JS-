@@ -47,32 +47,50 @@
 		window.onload = function () {
 			 var container  = g("container");
 			 var list = g("list");
-			 var buttons = g("buttons");
+			 var buttons = g("buttons").getElementsByTagName("span");;
 			 var prev = g("prev");
 			 var next = g("next");
-			 var dots = buttons.getElementsByTagName("span");
 			 var index = 1;
 
 			 function dotchange (){
-			 	for (var i = dots.length - 1; i >= 0; i--) {
-			 		if (dots[i].className == "on") {
-			 			dots[i].className = "";
+			 	for (var i = buttons.length - 1; i >= 0; i--) {
+			 		if (buttons[i].className == "on") {
+			 			buttons[i].className = "";
 			 			break;
 			 		}
 			 	}
-			 	dots[index-1].className = "on";
+			 	buttons[index-1].className = "on";
 			 }
 
 			 function changePic( offset ){
 			 	var newleft = parseInt(list.style.left)  + offset;
-			 	list.style.left = newleft + "px" ;
-			 	if (newleft == -3000 ) {
-			 		list.style.left =  0;
-			 	}
-			 	else if (newleft == 600) {
-			 		list.style.left =  -2400 + "px";
+
+			 	var time = 300;
+			 	var interval = 100;
+			 	var speed = offset/(time/interval);
+
+			 	var go = function (){
+			 		if ((speed < 0 && parseInt(list.style.left) > newleft )||( speed > 0 && parseInt(list.style.left) < newleft)){
+			 				list.style.left = parseInt(list.style.left) + speed + "px";
+			 				setInterval(go, interval)
+			 				
+			 		}
+
+			 		else {
+			 			// debugger;
+			 			list.style.left = newleft + "px" ;
+					 		  if (newleft == -3000 ) {
+					 		  	list.style.left =  0;
+					 		  }
+					 		  else if (newleft == 600) {
+					 		  	list.style.left =  -2400 + "px";
+					 		  } 
+					 		  return;
+			 		}
+
 			 	}
 
+			 	go();  
 			 }
 
 			 prev.onclick = function () {
@@ -90,14 +108,15 @@
 
 			 }
 
-			 for (var i = 0; i < dots.length; i++) {
-			 	dots[i].onclick = function () {
-			 		var oldindex = parseInt(document.getElementsByClassName("on")[0].getAttribute("index")); 
+			 for (var i = 0; i < buttons.length; i++) {
+			 	buttons[i].onclick = function () {
+			 		if (this.className == "on") return;
+			 		else {var oldindex = index; 
 			 		var newindex = parseInt(this.getAttribute("index"));
-			 		offset = (-newindex  + oldindex )*600;
+			 		offset = (newindex  - oldindex )*(-600);
 			 		 changePic(offset); 
 			 		 index = newindex;
-			 		 dotchange(); 
+			 		 dotchange(); }
 			 	};
 			 }
 
