@@ -23,7 +23,7 @@
 		#list {
 			font-size: 0;
 			position: absolute;
-			width: 3000px;
+			width: 4200px;
 
 		}
 
@@ -52,6 +52,7 @@
 			 var next = g("next");
 			 var index = 1;
 			 var animating = 0;
+			 var timer;
 			 
 
 			 function dotchange (){
@@ -83,11 +84,11 @@
 			 		else {
 			 			animating = 0;
 			 			list.style.left = newleft + "px" ;
-					 		  if (newleft == -3000 ) {
-					 		  	list.style.left =  0;
+					 		  if (newleft == -3600 ) {
+					 		  	list.style.left =  -600+"px";
 					 		  }
-					 		  else if (newleft == 600) {
-					 		  	list.style.left =  -2400 + "px";
+					 		  else if (newleft == 0) {
+					 		  	list.style.left =  -3000 + "px";
 					 		  } 
 
 			 		}
@@ -133,17 +134,34 @@
 			 	};
 			 }
 
+			 function play () {
+			 	 timer = setInterval(next.onclick, 3000) ;
+
+			 }
+
+			 function stop () {
+			 	 clearInterval(timer) ;
+
+			 }
+
+			 container.onmouseover = stop;
+			 container.onmouseout = play;
+
+			 play();
+
 		}
 	</script>
 </head>
 <body>
 	<div id="container">
-		<div id="list" style="left: 0;">
+		<div id="list" style="left: -600px;">
+			<img src="img/5.jpg" alt="">
 			<img src="img/1.jpg" alt="">
 			<img src="img/2.jpg" alt="">
 			<img src="img/3.jpg" alt="">
 			<img src="img/4.jpg" alt="">
 			<img src="img/5.jpg" alt="">
+			<img src="img/1.jpg" alt="">
 		</div>
 
 		<a  id="prev" class="arrow">&lt;</a>
