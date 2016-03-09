@@ -73,6 +73,23 @@ window.onload = function() {
         return y + "-" + m + "-" + d + " " + h + ":" + mi;
     }
 
+    // 赞回复
+    function commentPraise (box) {
+        var cp = box.getElementsByClassName("comment-praise")[0];
+        var my = cp.getAttribute("my");
+        var total = parseInt(cp.getAttribute("total"));
+        if (my==0) {
+            cp.setAttribute("total", total+1)
+            cp.innerHTML = total+ 1 + ' 取消赞' ;
+            cp.setAttribute("my", 1)
+        }
+        else {
+            cp.setAttribute("total", total-1)
+            cp.innerHTML = total -1 + ' 赞' ;
+            cp.setAttribute("my", 0)
+        }
+    }
+
     // 事件代理
     for (var i = lis.length - 1; i >= 0; i--) {
         lis[i].onclick = function(e) {
@@ -102,6 +119,10 @@ window.onload = function() {
                 case "btn":
                     replayBox(this.parentNode.parentNode.parentNode);
                     break;
+
+                case "comment-praise":
+                commentPraise(target.parentNode);
+                break;
                 default:
                     // statements_def
                     break;
