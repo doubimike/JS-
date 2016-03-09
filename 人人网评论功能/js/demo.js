@@ -74,19 +74,23 @@ window.onload = function() {
     }
 
     // 赞回复
-    function commentPraise (box) {
-        var cp = box.getElementsByClassName("comment-praise")[0];
-        var my = cp.getAttribute("my");
-        var total = parseInt(cp.getAttribute("total"));
-        if (my==0) {
-            cp.setAttribute("total", total+1)
-            cp.innerHTML = total+ 1 + ' 取消赞' ;
-            cp.setAttribute("my", 1)
-        }
-        else {
-            cp.setAttribute("total", total-1)
-            cp.innerHTML = total -1 + ' 赞' ;
-            cp.setAttribute("my", 0)
+    function commentPraise(el) {
+        var my = el.getAttribute("my");
+        var oldtotal = parseInt(el.getAttribute("total"));
+        var newtotal;
+        if (my == 0) {
+            newtotal = oldtotal + 1;
+            el.setAttribute("total", newtotal)
+            el.innerHTML = newtotal + ' 取消赞';
+            el.setAttribute("my", 1);
+
+        } else {
+            newtotal = oldtotal - 1;
+            el.setAttribute("total", newtotal)
+            el.innerHTML = (newtotal == 0) ? "赞" : newtotal + ' 赞';
+            el.setAttribute("my", 0)
+
+            el.style.display = (newtotal == 0) ? "" : "inline-block";
         }
     }
 
@@ -121,8 +125,8 @@ window.onload = function() {
                     break;
 
                 case "comment-praise":
-                commentPraise(target.parentNode);
-                break;
+                    commentPraise(target);
+                    break;
                 default:
                     // statements_def
                     break;
