@@ -25,14 +25,31 @@ window.onload = function() {
 
                     // 点赞功能
                 case "praise":
-                    if (praisesTotalValue == 0) {
-                        praisesTotal.style.display = "block";
-                        praisesTotal.setAttribute("total", 1);
-                        praisesTotal.innerHTML = "我觉得很赞";
+                    if (target.innerHTML == "赞") {
+                        if (praisesTotalValue == 0) {
+                            praisesTotal.style.display = "block";
+                            praisesTotal.setAttribute("total", 1);
+                            praisesTotal.innerHTML = "我觉得很赞";
+                            target.innerHTML = "取消赞";
+                        } else {
+                            praisesTotal.setAttribute("total", praisesTotalValue + 1);
+                            praisesTotal.innerHTML = "我和4个人觉得很赞";
+                            target.innerHTML = "取消赞";
+                        }
                     } else {
-                        praisesTotal.setAttribute("total", praisesTotalValue+1);
-                        praisesTotal.innerHTML = "我和4个人觉得很赞";
+                        if (praisesTotalValue > 1) {
+                            praisesTotal.setAttribute("total", praisesTotalValue - 1);
+                            praisesTotal.innerHTML = "4个人觉得很赞";
+                            target.innerHTML = "赞";
+                        } else {
+                            praisesTotal.setAttribute("total", 0);
+                            praisesTotal.style.display = "none";
+                            praisesTotal.innerHTML = "";
+                            target.innerHTML = "赞";
+                        }
+
                     }
+
                     break;
                 default:
                     // statements_def
