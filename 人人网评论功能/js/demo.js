@@ -31,18 +31,46 @@ window.onload = function() {
     }
 
     //评论分享功能
-    function comment(obj, el) {
-        var txt = obj.children[0];
-        var comment = txt.value;
-        if (comment != "") {
-            var html =
-                '<div class="comment-box clearfix" user="self"><img class="myhead" src="images/my.jpg" alt=""><div class="comment-content"><p class="comment-text"><span class="user">我：</span>' + comment + '</p><p class="comment-time">2016-03-9 18:34<a href="javascript:;" class="comment-praise" total="0" my="0">赞</a><a href="javascript:;" class="comment-operate">删除</a></p></div></div>'
-            obj.parentNode.getElementsByClassName("comment-list")[0].innerHTML += html;
-        }
-        obj.className = "text-box";
-        txt.value = "";
-        txt.placeholder = "评论...";
-        obj.children[2].innerHTML = "0/140";
+    // 我的方式：
+    // function comment(obj, el) {
+    //     var txt = obj.children[0];
+    //     var comment = txt.value;
+    //     if (comment != "") {
+    //         var html =
+    //             '<div class="comment-box clearfix" user="self"><img class="myhead" src="images/my.jpg" alt=""><div class="comment-content"><p class="comment-text"><span class="user">我：</span>' + comment + '</p><p class="comment-time">2016-03-9 18:34<a href="javascript:;" class="comment-praise" total="0" my="0">赞</a><a href="javascript:;" class="comment-operate">删除</a></p></div></div>'
+    //         obj.parentNode.getElementsByClassName("comment-list")[0].innerHTML += html;
+    //     }
+    //     obj.className = "text-box";
+    //     txt.value = "";
+    //     txt.placeholder = "评论...";
+    //     obj.children[2].innerHTML = "0/140";
+    // }
+
+    function replayBox(box) {
+        var textarea = box.getElementsByTagName("textarea")[0];
+        var list = box.getElementsByClassName("comment-list")[0];
+        var li = document.createElement("div");
+        li.className = "comment-box clearfix";
+        li.setAttribute("user", "self");
+        var html = '<img class="myhead" src="images/my.jpg" alt=""><div class="comment-content"><p class="comment-text"><span class="user">我：</span>' + textarea.value + '</p><p class="comment-time">' + getTime() + '<a href="javascript:;" class="comment-praise" total="0" my="0">赞</a><a href="javascript:;" class="comment-operate">删除</a></p></div>'
+        li.innerHTML = html;
+        list.appendChild(li);
+        textarea.value = "";
+        textarea.onblur();
+    }
+
+    function getTime() {
+        var t = new Date();
+        var y = t.getFullYear();
+        var m = t.getMonth() + 1;
+        var d = t.getDate();
+        var h = t.getHours();
+        var mi = t.getMinutes();
+        m = m < 10 ? "0" + m : m;
+        d = d < 10 ? "0" + d : d;
+        h = h < 10 ? "0" + h : h;
+        mi = mi < 10 ? "0" + mi : mi;
+        return y + "-" + m + "-" + d + " " + h + ":" + mi;
     }
 
     // 事件代理
@@ -68,6 +96,11 @@ window.onload = function() {
                     // 点击灰色按钮的时候，textarea不能消失，这个思路很有意思哦。通过定时器来实现。
                 case "btn btn-off":
                     clearTimeout(timer);
+                    break;
+
+                    //点击蓝色按钮
+                case "btn":
+                    replayBox(this.parentNode.parentNode.parentNode);
                     break;
                 default:
                     // statements_def
