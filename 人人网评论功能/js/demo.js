@@ -9,30 +9,24 @@ window.onload = function() {
 
     // 赞分享函数 为什么这样设计参数呢？
     function praiseBox(box, el) {
-        var praisesTotal = box.getElementsByClassName("praises-total")[0];
-        var praisesTotalValue = parseInt(praisesTotal.getAttribute("total"));
+        var praisesEl = box.getElementsByClassName("praises-total")[0];
+        var oldTotal = parseInt(praisesEl.getAttribute("total"));
+        var txt = el.innerHTML;
+        var newTotal;
 
-        if (el.innerHTML == "赞") {
-            if (praisesTotalValue == 0) {
-                praisesTotal.style.display = "block";
-                praisesTotal.setAttribute("total", 1);
-                praisesTotal.innerHTML = "我觉得很赞";
-            } else {
-                praisesTotal.setAttribute("total", praisesTotalValue + 1);
-                praisesTotal.innerHTML = "我和4个人觉得很赞";
-            }
+        if (txt == "赞") {
+            newTotal = oldTotal + 1;
+            praisesEl.innerHTML = (newTotal == 1) ? "我觉得很赞" : "我和" + oldTotal + "个人觉得很赞";
             el.innerHTML = "取消赞";
+
         } else {
-            if (praisesTotalValue > 1) {
-                praisesTotal.setAttribute("total", praisesTotalValue - 1);
-                praisesTotal.innerHTML = "4个人觉得很赞";
-            } else {
-                praisesTotal.setAttribute("total", 0);
-                praisesTotal.style.display = "none";
-                praisesTotal.innerHTML = "";
-            }
+            newTotal = oldTotal - 1;
+            praisesEl.innerHTML = (newTotal == 0) ? "" : newTotal + "个人觉得很赞";
             el.innerHTML = "赞";
         }
+
+        praisesEl.setAttribute("total", newTotal);
+        praisesEl.style.display = (newTotal == 0) ? "none" : "block";
     }
 
     // 事件代理
