@@ -94,6 +94,18 @@ window.onload = function() {
         }
     }
 
+    function commentOperate (box,el) {
+          var txt = el.innerHTML;
+          if (txt=="删除") {
+            box.getElementsByClassName("comment-list")[0].removeChild(el.parentNode.parentNode.parentNode);
+          }
+          if (txt=="回复") {
+            var user = el.parentNode.parentNode.getElementsByClassName("user")[0].innerHTML;
+            box.getElementsByTagName("textarea")[0].value = "回复" + user;
+            box.getElementsByTagName("textarea")[0].onfocus();
+          }  
+    }
+
     // 事件代理
     for (var i = lis.length - 1; i >= 0; i--) {
         lis[i].onclick = function(e) {
@@ -127,6 +139,11 @@ window.onload = function() {
                 case "comment-praise":
                     commentPraise(target);
                     break;
+
+                case "comment-operate":
+                commentOperate(this,target);
+                    break;
+                        
                 default:
                     // statements_def
                     break;
