@@ -1,6 +1,7 @@
 window.onload = function() {
     var list = document.getElementById("list");
     var lis = list.children;
+    var timer;
 
     // 删除节点
     function removeNode(node) {
@@ -64,35 +65,72 @@ window.onload = function() {
                     praiseBox(this, target);
                     break;
 
-                case "btn":
-                    comment(target.parentNode, target);
+                    // 点击灰色按钮的时候，textarea不能消失，这个思路很有意思哦。通过定时器来实现。
+                case "btn btn-off":
+                    clearTimeout(timer);
                     break;
                 default:
                     // statements_def
                     break;
             }
         }
-    }
 
-    var comments = document.getElementsByClassName("comment");
-    for (var i = comments.length - 1; i >= 0; i--) {
-        comments[i].onfocus = function() {
+        // 输入框
+        var textarea = lis[i].getElementsByTagName("textarea")[0];
+        textarea.onfocus = function() {
             this.parentNode.className = "text-box text-box-on";
-            this.innerHTML = "";
-            this.placeholder = "";
-            this.parentNode.children[1].className = "btn btn-off";
+            this.value = (this.value == "评论…") ? '' : this.value;
+            this.onkeyup();
         }
 
-        comments[i].onkeyup = function() {
-            this.parentNode.children[1].className = "btn";
-            input = this.value;
-            this.parentNode.children[2].innerHTML = input.length + "/140";
+        textarea.onkeyup = function() {
+            var len = this.value.length;
+            var p = this.parentNode;
+            var btn = p.children[1];
+            var word = p.children[2];
+            if (len == 0 || len > 140) {
+                btn.className = "btn btn-off";
+            } else {
+                btn.className = "btn";
+            }
+            word.innerHTML = len + "/140";
         }
 
-        comments[i].onblur = function() {
-            this.parentNode.className = (this.value == "") ? "text-box" : "text-box text-box-on";
-            if (this.value == "") this.placeholder = "评论...";
-        }
+        textarea.onblur = function() {
+            var me = this;
+            if (this.value == "") {
+                timer = setTimeout(function() {
+                    me.parentNode.className = "text-box";
+                    me.value = "评论…";
+                }, 400)
 
+            }
+
+
+
+        }
     }
+
+    // 输入框 我的实现方式
+    // var comments = document.getElementsByClassName("comment");
+    // for (var i = comments.length - 1; i >= 0; i--) {
+    //     comments[i].onfocus = function() {
+    //         this.parentNode.className = "text-box text-box-on";
+    //         this.innerHTML = "";
+    //         this.placeholder = "";
+    //         this.parentNode.children[1].className = "btn btn-off";
+    //     }
+
+    //     comments[i].onkeyup = function() {
+    //         this.parentNode.children[1].className = "btn";
+    //         input = this.value;
+    //         this.parentNode.children[2].innerHTML = input.length + "/140";
+    //     }
+
+    //     comments[i].onblur = function() {
+    //         this.parentNode.className = (this.value == "") ? "text-box" : "text-box text-box-on";
+    //         if (this.value == "") this.placeholder = "评论...";
+    //     }
+
+    // }
 }
