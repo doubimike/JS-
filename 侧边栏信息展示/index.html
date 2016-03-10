@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap-theme.css">
+    <script src="components/modernizr/modernizr.js"></script>
+    <title>sidebar demo</title>
+    <style>
+    body {
+        font-family: 'Microsoft YaHei', 'Open Sans', 'trebuchet ms', arial, sans-serif;
+    }
+    
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    #sidebar {
+        padding-top: 100px;
+        width: 35px;
+        position: fixed;
+        background-color: #e1e1e1;
+        min-height: 100%;
+        z-index: 100;
+    }
+    
+    .item {
+        text-align: center;
+        margin-top: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        text-align: center;
+    }
+    
+    .closeBar {
+        position: absolute;
+        bottom: 30px;
+        width: 35px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .nav-content {
+    	width: 200px;
+    	position: fixed;
+    	min-height: 100%;
+    	background-color: #e1e1e1;
+    	border: 1px solid black;
+    	opacity: 0;
+    }
+
+    .nav-con-close {
+    	position: absolute;
+    	top: 5px;
+    	right: 5px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="sidebar">
+        <ul>
+            <li class="item" id="prof">
+                <span class="glyphicon glyphicon-user"></span>
+                <div>我</div>
+            </li>
+            <li class="item" id="asset"><span class="glyphicon glyphicon-usd"></span>
+                <div>资产</div>
+            </li>
+            <li class="item" id="brand"><span class="glyphicon glyphicon-heart"></span>
+                <div>品牌</div>
+            </li>
+            <li class="item" id="broadcast"><span class="glyphicon glyphicon-bell"></span>
+                <div>直播</div>
+            </li>
+            <li class="item" id="foot"><span class="glyphicon glyphicon-eye-open"></span>
+                <div>看过</div>
+            </li>
+            <li class="item" id="calendar"><span class="glyphicon glyphicon-time"></span>
+                <div>日历</div>
+            </li>
+        </ul>
+        <div class="closeBar">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+    </div>
+    <div class="nav-content" id="prof-content">
+    	<div>
+    		<span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
+    		<div>
+    			我
+    		</div>
+    	</div>
+    </div>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+    window.jQuery || document.write('<script src="components/jquery/dist/jquery.min.js"><\/script>');
+    </script>
+</body>
+
+</html>
