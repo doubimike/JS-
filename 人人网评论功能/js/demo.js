@@ -94,16 +94,21 @@ window.onload = function() {
         }
     }
 
-    function commentOperate (box,el) {
-          var txt = el.innerHTML;
-          if (txt=="删除") {
-            box.getElementsByClassName("comment-list")[0].removeChild(el.parentNode.parentNode.parentNode);
-          }
-          if (txt=="回复") {
-            var user = el.parentNode.parentNode.getElementsByClassName("user")[0].innerHTML;
-            box.getElementsByTagName("textarea")[0].value = "回复" + user;
-            box.getElementsByTagName("textarea")[0].onfocus();
-          }  
+    // 操作回复
+    function commentOperate(box, el) {
+        var txt = el.innerHTML;
+        var comlist = box.getElementsByClassName("comment-list")[0];
+        var combox = el.parentNode.parentNode.parentNode;
+        var user = combox.getElementsByClassName("user")[0].innerHTML;
+        var textarea = box.getElementsByTagName("textarea")[0];
+        if (txt == "删除") {
+            removeNode(combox);
+        }
+        else {
+            textarea.onfocus();
+            textarea.value = "回复" + user;
+            textarea.onkeyup();
+        }
     }
 
     // 事件代理
@@ -133,7 +138,7 @@ window.onload = function() {
 
                     //点击蓝色按钮
                 case "btn":
-                    replayBox(this.parentNode.parentNode.parentNode);
+                    replayBox(target.parentNode.parentNode.parentNode);
                     break;
 
                 case "comment-praise":
@@ -141,9 +146,9 @@ window.onload = function() {
                     break;
 
                 case "comment-operate":
-                commentOperate(this,target);
+                    commentOperate(this, target);
                     break;
-                        
+
                 default:
                     // statements_def
                     break;
