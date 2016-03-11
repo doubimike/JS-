@@ -45,9 +45,18 @@
                 console.log('关闭')
                 this.el.className = "sidebar-move-left";
                 this.closeBarEl.className = "closeBar-move-right";
+
+                this.state = "closed";
             };
             Sidebar.prototype.open = function() {
                 console.log('打开')
+                 this.el.style.left = "-120px";
+               
+                this.el.className = "sidebar-move-right";
+                this.closeBarEl.style.left = "160px";
+                
+                this.closeBarEl.className = "closeBar-move-left";
+                this.state = "opened";
             };
             Sidebar.prototype.triggerSwitch = function() {
                 if (this.state === "opened") {
