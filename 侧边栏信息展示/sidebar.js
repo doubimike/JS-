@@ -1,9 +1,40 @@
 (function() {
+        // 菜单项的构造函数
+        var Menubar = function() {
+            console.log(this);
+            this.el = document.querySelector("#sidebar ul");
+            this.state = "allClosed"; //hasOpened
+            this.el.addEventListener("click", function(e) {
+                e.stopPropagation();
+            });
+            this.menuList = document.querySelectorAll("#sidebar ul > li");
+            var self = this;
+            this.currentOpenedMenuContent = null;
+            for (var i = 0; i < this.menuList.length; i++) {
+                this.menuList[i].addEventListener("click", function(e) {
+                    var menuContentEl = document.getElementById(e.currentTarget.id + "-content");
+                    if (self.state=="allClosed") {
+                    	console.log("打开" + menuContentEl.id);
+                    	self.state = "hasOpened";
+                    	self.currentOpenedMenuContent = menuContentEl;
+                    } else {
+                    	console.log("关闭" + self.currentOpenedMenuContent.id);
+                    	console.log("打开" + menuContentEl.id);
+                    	self.state = "hasOpened";
+                    	self.currentOpenedMenuContent = menuContentEl;
+                    }
+                })
+            };
+        };
+        // sidebar构造函数
         var Sidebar = function(eId, closeBarId) {
             var self = this;
             this.state = "opened";
             this.el = document.getElementById(eId || "sidebar");
-            this.closeBarEl = document.getElementById(closeBarId || "closeBar")
+            this.closeBarEl = document.getElementById(closeBarId || "closeBar");
+
+            this.menubar = new Menubar();
+
             this.el.addEventListener("click", function(e) {
                 if (e.target !== self.el) {
                     self.triggerSwitch();
@@ -25,10 +56,13 @@
                     this.state = "opened";
                 }
             };
-        }
+        };
 
 
         var sidebar = new Sidebar();
+
+
+
     }
 
 )();
