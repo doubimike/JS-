@@ -1,3 +1,4 @@
+// 觉得不用构造行数，代码看起来逻辑没有那么清晰。
 window.onload = function() {
     var sidebar = document.getElementById('sidebar');
     var closeBar = document.getElementById('closeBar');
@@ -10,6 +11,7 @@ window.onload = function() {
             sidebarState = "closed";
             sidebar.style.left = '-120px';
             closeBar.style.left = "160px";
+            // + nav-content 全部弄成透明的。
         } else {
             sidebarState = "opened";
             sidebar.style.left = "0";
@@ -29,8 +31,6 @@ window.onload = function() {
                 menuContentEl = document.getElementById(e.currentTarget.id + '-content');
                 menuContentEl.style.opacity = 1;
             }
-
-
         })
     };
 
@@ -52,18 +52,14 @@ window.onload = function() {
 
     var navc = document.getElementsByClassName('nav-content');
     for (var i = navc.length - 1; i >= 0; i--) {
-    	var self = navc[i];
-    	console.log(self);
-    	// debugger;
+        var self = navc[i];
         navc[i].addEventListener('click', function(e) {
             if (e.target.className == "glyphicon glyphicon-chevron-left nav-con-close") {
-   			for (var j = navc.length - 1; j >= 0; j--) {
-   				navc[j].style.opacity = 0;
-   			}
+                for (var j = navc.length - 1; j >= 0; j--) {
+                    navc[j].style.opacity = 0;
+                }
             }
-
         });
-        // debugger;
     }
-
 }
+
