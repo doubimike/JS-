@@ -43,6 +43,8 @@
 
             Sidebar.prototype.close = function() {
                 console.log('关闭')
+                this.el.className = "sidebar-move-left";
+                this.closeBarEl.className = "closeBar-move-right";
             };
             Sidebar.prototype.open = function() {
                 console.log('打开')

@@ -36,27 +36,69 @@
         text-align: center;
     }
     
-    .closeBar {
+    #closeBar {
         position: absolute;
         bottom: 30px;
         width: 35px;
         text-align: center;
         cursor: pointer;
     }
-
+    
     .nav-content {
-    	width: 200px;
-    	position: fixed;
-    	min-height: 100%;
-    	background-color: #e1e1e1;
-    	border: 1px solid black;
-    	opacity: 0;
+        width: 200px;
+        position: fixed;
+        min-height: 100%;
+        background-color: #e1e1e1;
+        border: 1px solid black;
+        opacity: 0;
+    }
+    
+    .nav-con-close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+    
+    .sidebar-move-left {
+        -webkit-animation: sml 1s 1 forwards;
+        animation: sml 1s 1 forwards;
+    }
+    
+    @-webkit-keyframes sml {
+        from {}
+        to {
+            -webkit-transform: translateX(-120px);
+                    transform: translateX(-120px);
+        }
+    }
+    
+    @keyframes sml {
+        from {}
+        to {
+            -webkit-transform: translateX(-120px);
+                    transform: translateX(-120px);
+        }
+    }
+    
+    .closeBar-move-right {
+        -webkit-animation: cmr 1s   1  forwards;
+        animation: cmr 1s   1  forwards;
     }
 
-    .nav-con-close {
-    	position: absolute;
-    	top: 5px;
-    	right: 5px;
+    @-webkit-keyframes cmr {
+    	from{}
+    	to{
+    		-webkit-transform: translateX(160px)  rotate(405deg) scale(1.5);
+    		        transform: translateX(160px)  rotate(405deg) scale(1.5);
+    	}
+    }
+
+    @keyframes cmr {
+    	from{}
+    	to{
+    		-webkit-transform: translateX(160px)  rotate(405deg) scale(1.5);
+    		        transform: translateX(160px)  rotate(405deg) scale(1.5);
+    	}
     }
     </style>
 </head>
@@ -84,71 +126,63 @@
                 <div>日历</div>
             </li>
         </ul>
-        <div class="closeBar">
+        <div id="closeBar">
             <span class="glyphicon glyphicon-remove"></span>
         </div>
     </div>
     <div class="nav-content" id="prof-content">
-    	<div>
-    		<span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
-    		<div>
-    			我
-    		</div>
-    	</div>
+        <div>
+            <span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
+            <div>
+                我
+            </div>
+        </div>
     </div>
-
     <div class="nav-content" id="asset-content">
-    	<div>
-    		<span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
-    		<div>
-    			我
-    		</div>
-    	</div>
+        <div>
+            <span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
+            <div>
+                我
+            </div>
+        </div>
     </div>
-
     <div class="nav-content" id="brand-content">
-    	<div>
-    		<span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
-    		<div>
-    			我
-    		</div>
-    	</div>
+        <div>
+            <span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
+            <div>
+                我
+            </div>
+        </div>
     </div>
-
     <div class="nav-content" id="broadcast-content">
-    	<div>
-    		<span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
-    		<div>
-    			我
-    		</div>
-    	</div>
+        <div>
+            <span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
+            <div>
+                我
+            </div>
+        </div>
     </div>
-
     <div class="nav-content" id="foot-content">
-    	<div>
-    		<span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
-    		<div>
-    			我
-    		</div>
-    	</div>
+        <div>
+            <span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
+            <div>
+                我
+            </div>
+        </div>
     </div>
-
     <div class="nav-content" id="calendar-content">
-    	<div>
-    		<span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
-    		<div>
-    			我
-    		</div>
-    	</div>
+        <div>
+            <span class="glyphicon glyphicon-chevron-left nav-con-close"></span>
+            <div>
+                我
+            </div>
+        </div>
     </div>
-
-
     <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
     <script>
     window.jQuery || document.write('<script src="components/jquery/dist/jquery.min.js"><\/script>');
     </script>
     <script src="sidebar.js">
-    	
     </script>
 </body>
 
