@@ -9,19 +9,31 @@
         	 e.stopPropagation();
         });
         this.menuList = document.querySelectorAll("#sidebar ul > li");
+        this.currentNavContEl = null;
         var self = this;
         for (var i = this.menuList.length - 1; i >= 0; i--) {
         	this.menuList[i].addEventListener("click", function(e) {
         		var menuContentEl = document.getElementById(e.currentTarget.id + "-content");
         		if (self.state == "allClosed") {
-        			// statement
-        			menuContentEl.style.opacity = 1;
+        			// menuContentEl.style.opacity = 1;
+        			menuContentEl.classList.add("move-nc-show");
         			self.state = "hasopened";
+        			self.currentNavContEl = menuContentEl;
         		}
         		else{
-        			
+        			self.currentNavContEl.classList.remove("move-nc-show");        			
+        			self.currentNavContEl = menuContentEl;
+        			menuContentEl.classList.add("move-nc-show");
         		}
         	})
+        	var navc = document.getElementById(this.menuList[i].id +"-content");
+        	navc.getElementsByClassName("nav-con-close")[0].onclick = function (e) {
+        		var navAllC = document.getElementsByClassName("nav-content");
+        		 for (var i = navAllC.length - 1; i >= 0; i--) {
+        		  	navAllC[i].classList.remove("move-nc-show");
+        		  	self.state = "allClosed";
+        		  } 
+        	}
         }
     }
 
@@ -33,20 +45,6 @@
         var self = this;
         this.closeBarEl = closeBar;
         this.el.addEventListener('click', function(e) {
-            // if (e.target.id == "closeBar" || e.target.className == 'glyphicon glyphicon-remove') {
-            //     if (self.state == "opened") {
-            //         self.state = "closed";
-            //         self.el.style.left = "-120px";
-            //         closeBar.style.left = "160px";
-            //     } else {
-            //         open();
-            //     }
-            // } else {
-            //     if (condition) {
-
-            //     }
-            // }
-
             if (e.target != self.el) {
                 self.triggerSwitch();
             }
@@ -54,13 +52,22 @@
     }
 
     Sidebar.prototype.open = function() {
-        console.log('open sidebar')
         this.state = "opened";
+        this.el.className = "move-sidebar-right";
+        this.closeBarEl.className = "move-closebar-left";
     };
 
     Sidebar.prototype.close = function() {
-        console.log('close sidebar')
         this.state = "closed";
+        this.el.className = "move-sidebar-left";
+        this.el.style.left = "-120px";
+        this.closeBarEl.className = "move-closebar-right";
+        this.closeBarEl.style.left = "160px";
+        menubar.state = "allClosed";
+        if (menubar.currentNavContEl) {
+        	menubar.currentNavContEl.classList.remove("move-nc-show");
+        }
+
     };
 
     Sidebar.prototype.triggerSwitch = function() {
