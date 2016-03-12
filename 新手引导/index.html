@@ -32,7 +32,7 @@
     #guide-box {
         position: absolute;
         width: 980px;
-        height: 800px;
+        height: 100%;
         left: 50%;
         margin-left: -490px;
         display: none;
@@ -47,6 +47,7 @@
     span {
         position: absolute;
         text-indent: -9999px;
+        cursor: pointer;
     }
     
     #guide-box div a {
@@ -157,30 +158,37 @@
     </div>
     <script>
     window.onload = function() {
+        var cookie = document.cookie.substring(5);
         var mask = document.getElementById("mask");
         var gbox = document.getElementById('guide-box');
         var alldiv = gbox.getElementsByTagName("div");
         var alla = document.getElementsByTagName('a');
         var aspan = document.getElementsByTagName("span");
 
-        mask.style.display = gbox.style.display = alldiv[0].style.display = "block";
+        if (cookie !== "www.doubimike.com") {
+            mask.style.display = gbox.style.display = alldiv[0].style.display = "block";
 
-        for (var i = alla.length - 1; i >= 0; i--) {
-            alla[i].index = i;
-            alla[i].onclick = function() {
-                this.parentNode.style.display = "none";
-                if (this.index + 1 < alla.length) {
-                    alldiv[this.index + 1].style.display = "block";
-                } else if (this.index+1 == alla.length) {
-                	mask.style.display = gbox.style.display = "none";
+            for (var i = alla.length - 1; i >= 0; i--) {
+                alla[i].index = i;
+                alla[i].onclick = function() {
+                    this.parentNode.style.display = "none";
+                    if (this.index + 1 < alla.length) {
+                        alldiv[this.index + 1].style.display = "block";
+                    } else if (this.index + 1 == alla.length) {
+                        mask.style.display = gbox.style.display = "none";
+                    }
                 }
             }
-        }
 
-        for (var i = aspan.length - 1; i >= 0; i--) {
-        	aspan[i].onclick = function () {
-        		 mask.style.display = gbox.style.display = "none";
-        	}
+            for (var i = aspan.length - 1; i >= 0; i--) {
+                aspan[i].onclick = function() {
+                    mask.style.display = gbox.style.display = "none";
+                }
+            }
+
+            var oDate = new Date();
+            oDate.setDate(oDate.getDate() + 30);
+            document.cookie = "name=www.doubimike.com;expires=" + oDate;
         }
 
     }
