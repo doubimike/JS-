@@ -10,9 +10,6 @@ var getMin = function(array) {
     return [min, minindex];
 }
 
-
-
-
 window.onload = function() {
     var windowWidth = document.body.clientWidth;
     var picWidth = 165;
@@ -43,11 +40,7 @@ window.onload = function() {
         box.style.left = setleftvalue + "px";
         box.style.top = settopvalue + "px";
 
-        console.log(setleftvalue,settopvalue)
-
         array[minindex] = array[minindex] + box.offsetHeight;
-        console.log(array[minindex])
-        console.log(array)
     }
 
     var columnArray = [];
@@ -60,7 +53,6 @@ window.onload = function() {
 
     for (var i = columnCount+1; i < boxes.length; i++) {
     	setPic(columnArray, boxes[i]);
-    	// debugger;
     }
     
 }
