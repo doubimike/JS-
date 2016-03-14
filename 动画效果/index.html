@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>动画效果</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    #div1 {
+        width: 200px;
+        height: 200px;
+        background: red;
+        position: relative;
+        left: -200px;
+        top: 0;
+    }
+    
+    #div1 span {
+        width: 20px;
+        height: 50px;
+        background: blue;
+        position: absolute;
+        left: 200px;
+        top: 75px;
+    }
+    </style>
+    <script>
+    startMove = function(destination) {
+        clearInterval(timer);
+        var div1 = document.getElementById('div1');
+        timer = setInterval(function() {
+        	var speed = (div1.offsetLeft < destination) ? 10:-10;
+            if (div1.offsetLeft == destination) {
+                clearInterval(timer);
+            } else {
+                div1.style.left = div1.offsetLeft + speed + 'px';
+            }
+        }, 40);
+    }
+
+    var timer = null;
+
+    window.onload = function() {
+        var div1 = document.getElementById('div1');
+        div1.onmouseover = function() {
+            startMove(0);
+        }
+        div1.onmouseout = function() {
+            startMove(-200);
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+        <span id="share">分享</span>
+    </div>
+</body>
+
+</html>
