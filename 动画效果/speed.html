@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Share</title>
+    <title>Speed</title>
     <style>
     * {
         margin: 0;
@@ -33,7 +33,15 @@
         clearInterval(timer);
         var div1 = document.getElementById('div1');
         timer = setInterval(function() {
-        	var speed = (div1.offsetLeft < destination) ? 10:-10;
+            var speed = (-div1.offsetLeft + destination) / 20;
+            if (speed > 0) {
+                speed = Math.ceil(speed);
+            } else {
+                speed = Math.floor(speed);
+            }
+            //             比如移动到的目标值是300px，通过300减去当前的坐标0，再除以20，结果是15，div以15的速度向右移动，这是第一次定时器执行的结果。30毫秒后再执行一次，目标移动到了15,通过300减去当前坐标15结果是285,285除以20结果的14.25，这样一次次运算下来，速度越来越小，比如速度是15、14.25、12.73、7.2。。。。这样的。 // 由于数值设置的原因，div移动到一定px后，进行相减再除20的运算后会出现小数，比如0.75，比如这时div移动到了290，程序里写到div的left=oDiv.offsetLeft+speed+'px',那么div的left就是290.75px,而浏览器是不允许出现小数的，会把0.75去掉，那么div的left就成了290，下次执行时div的left是290，算出来速度还是0.75，浏览器又省略了小数，结果就是div停在了290px，到不了目标点300。 // 为了解决这个问题，Math.ceil就派上用场了，它会把0.75向上取整为1，这样div就又可以向右移动1px了，这时里目标点很近了，就以1的速度慢慢到达300，然后停止定时器。 // 同理，向左移动，计算出来的速度会是负值比如-0.75，就用Math.floor把速度向下取整为-1，这样，就避免了卡在某个像素点不动的问题。 // Math.floor还是ceil这些运算的目的
+            // 不是要把speed取到0，而是要让浏览器可以继续运算下去，然后用我们的if条件判断，等于itarget了就结束运动。
+
             if (div1.offsetLeft == destination) {
                 clearInterval(timer);
             } else {
