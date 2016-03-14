@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Opacity</title>
+    <style>
+    #div1 {
+        width: 200px;
+        height: 200px;
+        background: red;
+        opacity: 0.3;
+    }
+    </style>
+    <script>
+    var timer;
+    var opacity100 = 30;
+
+    function startMove(destination) {
+        var div1 = document.getElementById('div1');
+        var speed;
+
+        clearInterval(timer);
+
+        // 乘以100是解决js浮点数运算误差问题。
+        var des = destination * 100;
+        if (opacity100 != des) {
+            speed = (opacity100 > des) ? -10 : 10;
+            timer = setInterval(function() {
+                if (opacity100 == des) {
+                    clearInterval(timer);
+                } else {
+                    opacity100 = opacity100 + speed;
+                    div1.style.opacity = opacity100 / 100;
+                }
+            }, 30);
+        }
+    }
+
+    window.onload = function() {
+        var div1 = document.getElementById('div1');
+        div1.onmouseover = function() {
+            startMove(1);
+        }
+
+        div1.onmouseout = function() {
+            startMove(.3);
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+    </div>
+</body>
+
+</html>
