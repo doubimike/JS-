@@ -29,15 +29,24 @@
     }
 
     function startMove(obj, des, attr) {
-        clearInterval(obj.timer);
-        obj.timer = setInterval(function() {
-                var pI = parseInt(getStyle(obj, attr))
-                var speed = (des - pI) / 8;
-                var speed = (speed < 0) ? Math.floor(speed) : Math.ceil(speed);
-                if (des == pI) {
-                    clearInterval(obj.timer);
+        
+        var self = obj;
+        clearInterval(self.timer);
+        self.timer = setInterval(function() {
+                var pI;
+                if (attr === "opacity") {
+                	pI = getStyle(self, attr);
+                    var speed = (des < pI) ? -0.1 : 0.1;
                 } else {
-                    obj.style[attr] = (pI + speed) + "px";
+                	pI = parseInt(getStyle(self, attr));
+                    var speed = (des - pI) / 8;
+                    speed = (speed < 0) ? Math.floor(speed) : Math.ceil(speed);
+                }
+                if (des == pI) {
+                    clearInterval(self.timer);
+                    return;
+                } else {
+                    self.style[attr] = (attr !== "opacity") ? (pI + speed) + "px" : (parseFloat(pI) + speed);
                 }
             },
             30)
@@ -71,10 +80,11 @@
         }
 
         aLis[2].onmouseover = function() {
-            startMove(this, 8, "borderWidth");
+            startMove(this, 0, "opacity");
         }
         aLis[2].onmouseout = function() {
-            startMove(this, 1, "borderWidth");
+
+            startMove(this, 1, "opacity");
         }
 
 
@@ -87,7 +97,7 @@
     <ul>
         <li></li>
         <li></li>
-        <li></li>
+        <li ></li>
     </ul>
 </body>
 
