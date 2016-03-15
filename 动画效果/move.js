@@ -10,17 +10,11 @@
     // starMove(obj,{"width":400,"height":400},fn)
     function startMove(obj, json, fn) {
 
-
         clearInterval(obj.timer);
-         var flag = 0;
-         var index = 0;
-         for(a in json){
-            index +=1
-         }
-         console.log(index)
+
         obj.timer = setInterval(function() {
                 for (attr in json) {
-
+                    var flag = 1;
                     var pI;
                     if (attr === "opacity") {
                         pI = getStyle(obj, attr);
@@ -32,24 +26,18 @@
                     }
                     
                     if (json[attr] !== pI  ) {
-                        // flag += 1;
                         flag = 0;
                         
                     }
 
                     obj.style[attr] = (attr !== "opacity") ? (pI + speed) + "px" : (parseFloat(pI) + speed);
-
-                    //  有bug，这里flag永远都不可能是1
-                    if (flag == index) {
+                    if (json[attr] === pI) {
                         clearInterval(obj.timer);
                         if (fn) {
                             fn();
                         }
 
                     }
-
-                    console.log(flag)
-
                 }
             },
             30)

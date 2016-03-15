@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Practice</title>
+    <style>
+	#move {
+		width: 400px;
+		margin:  50px auto;
+
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	a {
+		display: inline-block;
+		position: relative;
+
+	}
+
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	p {
+		padding-top: 32px;
+	}
+
+	#move {
+		overflow: hidden;
+	}
+
+
+
+    </style>
+    <script src="move.js"></script>
+    <script>
+    	window.onload = function  () {
+    		 a = document.getElementsByTagName('a');
+    		 for (var i = 0; i < a.length; i++) {
+    		  	a[i].onmouseover = function  () {
+    		  		 img = this.getElementsByTagName('img')[0];
+    		  		 startMove(img,{"top":-30,"opacity":0},function  () {
+    		  		 	img.style.top = 30+'px';
+    		  		 	 startMove(img,{"top":0,"opacity":1}) 
+    		  		 })
+    		  	}
+
+    		  	a[i].onmouseout = function  () {
+    		  		 img = this.getElementsByTagName('img')[0];
+    		  		 startMove(img,{"top":0,"opacity":1})
+    		  	}
+
+
+    		  } 
+    	}
+    </script>
+</head>
+
+<body>
+    <div id="move">
+        <a href=""><i><img src="pic.png" alt=""></i><p>话费</p></a>
+        <a href=""><i><img src="pic.png" alt=""></i><p>话费</p></a>
+        <a href=""><i><img src="pic.png" alt=""></i><p>话费</p></a>
+        <a href=""><i><img src="pic.png" alt=""></i><p>话费</p></a>
+        <a href=""><i><img src="pic.png" alt=""></i><p>话费</p></a>
+        <a href=""><i><img src="pic.png" alt=""></i><p>话费</p></a>
+    </div>
+</body>
+
+</html>

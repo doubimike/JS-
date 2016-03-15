@@ -23,7 +23,6 @@
 <body>
     <ul>
         <li></li>
-        <li></li>
     </ul>
     <script src="move.js">
     </script>
@@ -44,27 +43,6 @@
                 })
             })
         }
-        li2.onmouseover = function() {
-            startMove(li2, 400, 'width', function() {
-                startMove(li2, 400, 'height', function() {
-                    startMove(li2, 0.2, 'opacity')
-                })
-            });
-            startMove(li,400,'width');
-        }
-
-        li2.onmouseout = function() {
-            startMove(li2, 1, 'opacity', function() {
-                startMove(li2, 200, 'height', function() {
-                    startMove(li2, 200, 'width')
-                })
-            })
-        }
-
-        
-
-        
-
     }
     </script>
 </body>
