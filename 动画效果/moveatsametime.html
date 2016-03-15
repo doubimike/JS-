@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chain Move</title>
+    <style>
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+    
+    ul li {
+        width: 200px;
+        height: 100px;
+        background: yellow;
+        margin-bottom: 20px;
+        border: 4px solid #000;
+    }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+    <script src="move.js">
+    </script>
+    <script>
+    window.onload = function() {
+        var li = document.getElementsByTagName('li')[0];
+        var li2 = document.getElementsByTagName('li')[1];
+        li.onmouseover = function() {
+            startMove(li, {"width":400,"height":400,"opacity":0.3},function() {
+                    startMove(li, 200, 'width')
+                });
+        }
+
+        li.onmouseout = function() {
+            startMove(li, 1, 'opacity', function() {
+                startMove(li, 200, 'height', function() {
+                    startMove(li, 200, 'width')
+                })
+            })
+        }
+        li2.onmouseover = function() {
+            startMove(li2, 400, 'width', function() {
+                startMove(li2, 400, 'height', function() {
+                    startMove(li2, 0.2, 'opacity')
+                })
+            });
+            startMove(li,400,'width');
+        }
+
+        li2.onmouseout = function() {
+            startMove(li2, 1, 'opacity', function() {
+                startMove(li2, 200, 'height', function() {
+                    startMove(li2, 200, 'width')
+                })
+            })
+        }
+
+        
+
+        
+
+    }
+    </script>
+</body>
+
+</html>
