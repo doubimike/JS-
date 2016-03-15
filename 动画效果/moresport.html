@@ -28,10 +28,10 @@
         }
     }
 
-    function startMove(obj, des,attr) {
+    function startMove(obj, des, attr) {
         clearInterval(obj.timer);
         obj.timer = setInterval(function() {
-        	var pI = parseInt(getStyle(obj,attr))
+                var pI = parseInt(getStyle(obj, attr))
                 var speed = (des - pI) / 8;
                 var speed = (speed < 0) ? Math.floor(speed) : Math.ceil(speed);
                 if (des == pI) {
@@ -45,16 +45,40 @@
 
     window.onload = function() {
         aLis = document.getElementsByTagName('li');
-        for (var i = 0; i < aLis.length; i++) {
-            aLis[i].timer = null;
-            aLis[i].onmouseover = function() {
-                startMove(this, 400,'height');
-            }
+        // for (var i = 0; i < aLis.length; i++) {
+        //     aLis[i].timer = null;
+        //     aLis[i].onmouseover = function() {
+        //         startMove(this, 400,'height');
+        //     }
 
-            aLis[i].onmouseout = function() {
-                startMove(this, 200,'height');
-            }
+        //     aLis[i].onmouseout = function() {
+        //         startMove(this, 200,'height');
+        //     }
+        // }
+
+        aLis[0].onmouseover = function() {
+            startMove(this, 400, "width");
         }
+        aLis[0].onmouseout = function() {
+            startMove(this, 200, "width");
+        }
+        aLis[1].onmouseover = function() {
+            startMove(this, 400, "height");
+        }
+
+        aLis[1].onmouseout = function() {
+            startMove(this, 200, "height");
+        }
+
+        aLis[2].onmouseover = function() {
+            startMove(this, 8, "borderWidth");
+        }
+        aLis[2].onmouseout = function() {
+            startMove(this, 1, "borderWidth");
+        }
+
+
+
     }
     </script>
 </head>
