@@ -31,11 +31,19 @@
         var li = document.getElementsByTagName('li')[0];
         console.log(li)
         li.onmouseover = function() {
-            startMove(this, 400, 'width')
+            startMove(li, 400, 'width', function() {
+                startMove(li, 400, 'height', function() {
+                    startMove(li, 0.2, 'opacity')
+                })
+            });
         }
 
         li.onmouseout = function() {
-            startMove(this, 400, 'height')
+            startMove(li, 1, 'opacity', function() {
+                startMove(li, 200, 'height', function() {
+                    startMove(li, 200, 'width')
+                })
+            })
         }
 
     }
