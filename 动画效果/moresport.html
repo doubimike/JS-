@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>More sport</title>
+    <style>
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+    
+    ul li {
+        width: 200px;
+        height: 100px;
+        background: yellow;
+        margin-bottom: 20px;
+        border: 4px solid #000;
+    }
+    </style>
+    <script>
+    function getStyle(obj, attr) {
+        if (obj.currentStyle) { // for ie
+            return obj.currentStyle[attr];
+        } else { // for firefox
+            return getComputedStyle(obj)[attr]; // getComputedStyle(obj).attr是不行的，
+            // 因为attr一般传进来是个string，只能用[]属性访问法
+        }
+    }
+
+    function startMove(obj, des,attr) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function() {
+        	var pI = parseInt(getStyle(obj,attr))
+                var speed = (des - pI) / 8;
+                var speed = (speed < 0) ? Math.floor(speed) : Math.ceil(speed);
+                if (des == pI) {
+                    clearInterval(obj.timer);
+                } else {
+                    obj.style[attr] = (pI + speed) + "px";
+                }
+            },
+            30)
+    }
+
+    window.onload = function() {
+        aLis = document.getElementsByTagName('li');
+        for (var i = 0; i < aLis.length; i++) {
+            aLis[i].timer = null;
+            aLis[i].onmouseover = function() {
+                startMove(this, 400,'height');
+            }
+
+            aLis[i].onmouseout = function() {
+                startMove(this, 200,'height');
+            }
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+
+</html>

@@ -5,46 +5,47 @@
     <meta charset="UTF-8">
     <title>Opacity</title>
     <style>
-    #div1 {
+    div {
         width: 200px;
         height: 200px;
         background: red;
         opacity: 0.3;
+        margin: 10px;
+        float: left;
     }
     </style>
     <script>
-    var timer;
-    var opacity100 = 30;
-
-    function startMove(destination) {
-        var div1 = document.getElementById('div1');
+    function startMove(obj, destination) {
         var speed;
 
-        clearInterval(timer);
+        clearInterval(obj.timer);
 
         // 乘以100是解决js浮点数运算误差问题。
         var des = destination * 100;
-        if (opacity100 != des) {
-            speed = (opacity100 > des) ? -10 : 10;
-            timer = setInterval(function() {
-                if (opacity100 == des) {
-                    clearInterval(timer);
+        if (obj.opacity100 != des) {
+            speed = (obj.opacity100 > des) ? -10 : 10;
+            obj.timer = setInterval(function() {
+                if (obj.opacity100 == des) {
+                    clearInterval(obj.timer);
                 } else {
-                    opacity100 = opacity100 + speed;
-                    div1.style.opacity = opacity100 / 100;
+                    obj.opacity100 = obj.opacity100 + speed;
+                    obj.style.opacity = obj.opacity100 / 100;
                 }
             }, 30);
         }
     }
 
     window.onload = function() {
-        var div1 = document.getElementById('div1');
-        div1.onmouseover = function() {
-            startMove(1);
-        }
-
-        div1.onmouseout = function() {
-            startMove(.3);
+        var divs = document.getElementsByTagName('div');
+        for (var i = 0; i < divs.length; i++) {
+            divs[i].timer = null;
+            divs[i].opacity100 = 30;
+            divs[i].onmouseover = function() {
+                startMove(this, 1);
+            }
+            divs[i].onmouseout = function() {
+                startMove(this, .3);
+            }
         }
     }
     </script>
@@ -52,6 +53,12 @@
 
 <body>
     <div id="div1">
+    </div>
+    <div id="div2">
+    </div>
+    <div id="div3">
+    </div>
+    <div id="div4">
     </div>
 </body>
 
