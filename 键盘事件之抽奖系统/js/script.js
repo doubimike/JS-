@@ -22,7 +22,7 @@ window.onload = function() {
 
     eventUtil.addHandler(document, 'keyup', function(e) {
         var e = e || window.event;
-        console.log(e.code)
+        console.log(e.keyCode)
         if (e.code == "Enter" && flag == 1) {
             timer = setInterval(changeContent, 30)
             play.style.background = "gray";
@@ -45,3 +45,4 @@ function changeContent() {
     var random = Math.floor(Math.random() * dataArray.length);
     title.innerHTML = dataArray[random];
 }
+
