@@ -9,6 +9,29 @@ function drag() {
     close.onclick = function() {
         panel.style.display = "none";
     };
+
+    var loginState = document.getElementById('loginState');
+    var loginStatePanel = document.getElementById('loginStatePanel');
+    loginState.onclick = function() {
+        if (loginStatePanel.style.display == "block") {
+            loginStatePanel.style.display = "none";
+        } else {
+            loginStatePanel.style.display = "block";
+        }
+    }
+
+    var lis = loginStatePanel.getElementsByTagName('li');
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].onclick = function(e) {
+            var e = e || window.event;
+            e.stopPropagation();
+            var target = e.currentTarget;
+            var id = target.id;
+            changeState(id);
+        }
+    }
+
+
 }
 
 function mDown(e) {
@@ -50,4 +73,12 @@ function move(e, x, y) {
 
     panel.style.left = l + 'px';
     panel.style.top = t + 'px';
+}
+
+
+function changeState(id) {
+    var txt = document.getElementById(id).getElementsByTagName('div')[1].innerHTML;
+    document.getElementById('loginStateShow').className = "login-state-show " + id;
+    document.getElementById('login2qq_state_txt').innerHTML = txt;
+    loginState.onclick();
 }
