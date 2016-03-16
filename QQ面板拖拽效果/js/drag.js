@@ -12,24 +12,44 @@ function drag() {
 
     var loginState = document.getElementById('loginState');
     var loginStatePanel = document.getElementById('loginStatePanel');
-    loginState.onclick = function() {
+    loginState.onclick = function(e) {
         if (loginStatePanel.style.display == "block") {
             loginStatePanel.style.display = "none";
         } else {
             loginStatePanel.style.display = "block";
+            e.stopPropagation();
+
+            document.onclick = function() {
+                loginStatePanel.style.display = "none"
+            }
         }
     }
 
     var lis = loginStatePanel.getElementsByTagName('li');
     for (var i = 0; i < lis.length; i++) {
+        lis[i].onmouseover = function() {
+            this.style.background = '#567';
+        }
+
+        lis[i].onmouseout = function() {
+            this.style.background = '#fff';
+        }
         lis[i].onclick = function(e) {
             var e = e || window.event;
-            e.stopPropagation();
+            if (e.stopPropagation) {
+                e.stopPropagation()
+            } else {
+                e.cancelBublle = true;
+            }
             var target = e.currentTarget;
             var id = target.id;
             changeState(id);
         }
     }
+
+
+
+    console.log(loginStatePanel.style.display)
 
 
 }
