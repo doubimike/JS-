@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>domReady</title>
+    <script src="domready.js"></script>
+    <script>
+    var time1;
+    myReady(function() {
+        time1 = new Date().getTime();
+        document.getElementById('header').innerHTML = 'timestamp:' + time1;
+    })
+    window.onload = function() {
+        var time2 = new Date().getTime();
+        document.getElementById('h2').innerHTML = 'timestamp:' + time2;
+        document.getElementById('h3').innerHTML = 'time间隔:（domready比window.onload快）' + (time2 - time1) + "毫秒";
+    }
+    </script>
+</head>
+
+<body>
+    <h1 id="header">h1</h1>
+    <h2 id="h2">h2</h2>
+    <h3 id="h3">差距</h3>
+    <img src="images/1.jpg" alt="">
+    <img src="images/2.jpg" alt="">
+    <img src="images/3.jpg" alt="">
+    <img src="images/4.jpg" alt="">
+    <img src="images/5.jpg" alt="">
+</body>
+
+</html>
