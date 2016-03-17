@@ -2,38 +2,36 @@ window.onload = function() {
     var box = document.getElementById('container');
     var imgs = box.getElementsByTagName('img');
 
-    for (var i = 1; i < imgs.length; i++) {
-        imgs[i].flag = 0; // 都还没往前
-        imgs[i].index = i;
-        imgs[i].style.left = 316 + 160 * i + 'px';
+    var imgWidth = imgs[0].offsetWidth;
+
+    var exposeWidth = 160;
+    var boxWidth = imgWidth + (imgs.length - 1) * exposeWidth;
+    box.style.width = boxWidth + 'px';
+
+    function setImgsPos() {
+        for (var i = 1, len = imgs.length; i < len; i++) {
+            imgs[i].style.left = imgWidth + exposeWidth * (i - 1) + 'px';
+        }
+    }
+
+    setImgsPos();
+
+
+    // 计算每道门打开时应移动的距离
+    var translate = imgWidth - exposeWidth;
+
+    // 为每道门绑定事件 
+    for (var i = 0; i < imgs.length; i++) {
+    	imgs[i].index = i;
         imgs[i].onmouseover = function() {
-            if (this.flag == 0) {
-            	this.style.left = this.offsetLeft - 316 +'px';
-            	this.flag =1;
-            	for (var j = 1; j < this.index; j++) {
-            		if(imgs[j].flag == 0){
-            			imgs[j].style.left = imgs[j].offsetLeft - 316 +'px';
-            			imgs[j].flag =1;
-            		}
-            	}
-            } else if(this.flag == 1) {
-            	for (var k = this.index+1; k < imgs.length; k++) {
-            		if(imgs[k].flag == 1){
-            			imgs[k].style.left = imgs[k].offsetLeft + 316 +'px';
-            			imgs[k].flag =0;
-            		}
-            	}
+            // 先将每道门复位
+            setImgsPos();
+
+            // 打开门
+            for (var j = 1; j <= this.index; j++) {
+            	imgs[j].style.left = imgs[j].offsetLeft -translate +'px';
             }
         }
-
     }
 
-    imgs[0].onmouseover = function () {
-    	  for (var k = 1; k < imgs.length; k++) {
-            		if(imgs[k].flag == 1){
-            			imgs[k].style.left = imgs[k].offsetLeft + 316 +'px';
-            			imgs[k].flag =0;
-            		}
-            	}
-    }
 }
