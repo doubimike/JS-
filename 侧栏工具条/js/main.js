@@ -4,29 +4,29 @@ requirejs.config({
     }
 });
 
-requirejs(['jquery'], function($) {
-    $("backTop").on('click', go);
+requirejs(['jquery', 'scrollTo'], function($, scrollTo) {
+    var scroll = new scrollTo.ScrollTo({
+        dest: 0,
+        speed: 800
+    });
+    $('#backTop').on('click', function() {
+        scroll.move()
+    });
+
+
     $(window).on('scroll', function() {
         checkPosition($(window).height());
     });
+
     checkPosition($(window).height());
 
-    function move() {
-        $('html,body').animate({ scrollTop: 0 }, 800);
-    }
-
-    function go () {
-    	 // body... 
-    	 $('html,body').scrollTop(0) 
-    }
-
     function checkPosition(pos) {
-        if ($(window).scrollTop() > pos) {
-            // statement
-            $('#backTop').fadeIn();
+        var scrollTop = $(window).scrollTop();
+        if (scrollTop < pos) {
+            $('#backTop').fadeOut();
         } else {
-            $("#backTop").fadeOut();
+            $('#backTop').fadeIn();
         }
-
     }
+
 });
