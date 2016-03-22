@@ -4,29 +4,8 @@ requirejs.config({
     }
 });
 
-requirejs(['jquery', 'scrollTo'], function($, scrollTo) {
-    var scroll = new scrollTo.ScrollTo({
-        dest: 0,
-        speed: 800
+requirejs(['jquery', 'backtop'], function($, backtop) {
+    new backtop($('#backTop'),{
+        mode:'move',
     });
-    $('#backTop').on('click', function() {
-        scroll.move()
-    });
-
-
-    $(window).on('scroll', function() {
-        checkPosition($(window).height());
-    });
-
-    checkPosition($(window).height());
-
-    function checkPosition(pos) {
-        var scrollTop = $(window).scrollTop();
-        if (scrollTop < pos) {
-            $('#backTop').fadeOut();
-        } else {
-            $('#backTop').fadeIn();
-        }
-    }
-
 });
