@@ -1,39 +1,43 @@
 define(['jquery', 'scrollTo'], function($, scrollTo) {
-
-    var scroll = new scrollTo.ScrollTo({ dest: 0, speed: 800 });
-    Backtop.prototype.checkPosition = function() {
-        var scrollTop = $(window).scrollTop();
-        if (scrollTop < this.opts.pos) {
-            $('#backTop').fadeOut();
+    Backtop.prototype._checkPosition = function() {
+    	var $el = this.$el;
+        if ($(window).scrollTop() < this.opts.pos) {
+            $el.fadeOut();
         } else {
-            $('#backTop').fadeIn();
+            $el.fadeIn();
         }
     };
+
+    Backtop.prototype._move = function  () {
+    	 this.scroll.move(); 
+    }
+    Backtop.prototype._go = function  () {
+    	 this.scroll.go(); 
+    }
 
     function Backtop(el, opts) {
         this.opts = $.extend({}, Backtop.DEFAULTS, opts);
         this.$el = el;
+        this.scroll = new scrollTo.ScrollTo({
+        	dest:this.opts.dest,
+        	speed:this.opts.speed
+        });
 
         if (this.opts.mode == 'move') {
-            this.$el.on('click', function() {
-                scroll.move();
-            });
+            this.$el.on('click', $.proxy(this._move,this));
         } else {
-        	this.$el.on('click', function() {
-                scroll.go();
-            });
+        	this.$el.on('click', $.proxy(this._go,this));
         }
 
-        var a = this;
-        $(window).on('scroll', function() {
-            a.checkPosition($(window).height());
-        });
-        a.checkPosition($(window).height());
+        $(window).on('scroll', $.proxy(this._checkPosition,this));
+        this._checkPosition($(window).height());
     }
 
     Backtop.DEFAULTS = {
         mode: 'move',
-        pos: $(window).height()
+        pos: $(window).height(),
+        speed:800,
+        dest:0
     }
     return Backtop;
 })
