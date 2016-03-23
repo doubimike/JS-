@@ -13,6 +13,9 @@ requirejs(['jquery', 'backtop'], function($, backtop) {
     });
 
     // $('#backtop').backtop({
-    //     mode:'move',
+    //     mode: 'move',
+    //     pos: 500,
+    //     speed:2000,
+    //     dest:0
     // });
 });

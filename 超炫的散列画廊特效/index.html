@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>超炫的散列画廊特效</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="images/data.js"></script>
+    
+</head>
+
+<body onselectstart="return false;">
+    <div class="wrap" id="wrap">
+    	<!-- photo负责平移和旋转 -->
+        <div class="photo photo-front" id="photo_{{index}}" >
+        	<!-- photo-wrap 负责翻转 -->
+            <div class="photo-wrap">
+                <div class="side side-front">
+                    <p class="image"><img src="images/{{img}}"></p>
+                    <p class="caption">{{caption}}</p>
+                </div>
+                <div class="side side-back">
+                    <p class="desc">{{desc}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
