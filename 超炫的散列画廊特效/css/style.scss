@@ -11,6 +11,33 @@ body {
     font-family: 'Avenir Next', 'Lantinghei SC';
 }
 
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?3et8kp');
+    src: url('fonts/icomoon.eot?3et8kp#iefix') format('embedded-opentype'), url('fonts/icomoon.ttf?3et8kp') format('truetype'), url('fonts/icomoon.woff?3et8kp') format('woff'), url('fonts/icomoon.svg?3et8kp#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-spinner11:before {
+    content: "\e900";
+}
+
 .wrap {
     width: 100%;
     height: 600px;
@@ -82,7 +109,7 @@ body {
         position: absolute;
         width: 100%;
         height: 100%;
-        transform-style:preserve-3d;
+        transform-style: preserve-3d;
         transition: all 1s;
         .side {
             backface-visibility: hidden;
@@ -99,5 +126,59 @@ body {
     }
     .photo-back .photo-wrap {
         transform: rotateY(180deg);
+    }
+    .nav {
+        position: absolute;
+        width: 80%;
+        left: 10%;
+        height: 30px;
+        line-height: 30px;
+        bottom: 20px;
+        z-index: 3;
+        text-align: center;
+        transform-style:preserve-3d;
+        span {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background-color: #aaa;
+            text-align: center;
+            transform: scale(.5);
+            -webkit-transform: scale(.5);
+            -moz-transform: scale(.5);
+            -o-transform: scale(.5);
+            -ms-transform: scale(.5);
+            transition: all .5s;
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            -o-transition: all .5s;
+            border-radius: 50px;
+            vertical-align: middle;
+        }
+        .i-current {
+            -moz-transform: scale(1);
+            -o-transform: scale(1);
+            -ms-transform: scale(1);
+            transform-origin: 50% 50%;
+            transform: scale(1);
+            -webkit-transform: scale(1);
+            &:after {
+                @extend .icon-spinner11:before;
+                text-align: center;
+                color: #fff;
+                display: inline-block;
+                font-size: 80%;
+            }
+        }
+
+        .i-back {
+        	transform:rotateY(180deg);
+        	background-color: #555;
+        }
+
+        .i-front {
+        transform:rotateY(0deg);	
+        }
     }
 }
