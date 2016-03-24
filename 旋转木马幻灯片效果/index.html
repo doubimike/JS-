@@ -5,9 +5,23 @@
 	<title>旋转木马幻灯片效果</title>
 	<link rel="stylesheet" href="main.css">
 	<script src="jquery.min.js"></script>
+	<script src="carousel.js"></script>
 </head>
 <body>
-	<div class="poster-main">
+	<div class="J_Poster poster-main">
+		<div class="poster-btn poster-prev-btn"></div>
+		<ul class="poster-list">
+			<li class="poster-item"><a href="#"><img src="images/1.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/2.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/3.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/4.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/5.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
+		</ul>
+		<div class="poster-btn poster-next-btn"></div>
+	</div>
+
+	<div class="J_Poster poster-main">
 		<div class="poster-btn poster-prev-btn"></div>
 		<ul class="poster-list">
 			<li class="poster-item"><a href="#"><img src="images/1.jpg" alt=""></a></li>
@@ -24,7 +38,12 @@
 		$(function() {
 			// Carousel
 
-			var carousel = 
+			Carousel.init($('.J_Poster'));
+
+			
+				 $('.J_Poster')[0].instance.m();
+			
+
 		});
 	</script>
 

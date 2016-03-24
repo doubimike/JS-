@@ -16,7 +16,9 @@ body {
     &,
     .main, .main .main-i {
         width: 100%;
+        min-width: 1300px;
         height: 400px;
+        max-height: 400px;
         position: relative;
     }
     .main {
