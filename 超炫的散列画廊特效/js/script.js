@@ -97,30 +97,23 @@ window.onload = function() {
 
     sort();
 
-
     // 点击翻页
     for (var i = 0; i < photos.length; i++) {
         photos[i].addEventListener('click', function() {
             turn(this);
-
         })
 
     }
 
     // 点击按钮
-
     for (var i = 0; i < spans.length; i++) {
         spans[i].index = i;
         spans[i].addEventListener('click', function() {
             if (this.className != 'i-current') {
-
                 document.getElementsByClassName('i-current')[0].className = '';
                 this.className = 'i-current';
-
-               
-            } 
-            	turn(photos[this.index]);
-            
+            }
+            turn(photos[this.index]);
         })
     }
 }
