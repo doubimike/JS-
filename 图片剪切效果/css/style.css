@@ -1,0 +1,20 @@
+body {
+  background-color: #333; }
+
+.drag-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  opacity: 1;
+  overflow: hidden; }
+
+#container {
+  position: relative; }
+
+.bottom-pic {
+  opacity: .5; }
+
+/*# sourceMappingURL=style.css.map */
