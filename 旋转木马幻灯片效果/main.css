@@ -6,7 +6,6 @@
 .poster-main {
 	width: 800px;
 	height: 270px;
-	background: red;
 	position: relative;
 	font-size: 0;
 }
@@ -22,16 +21,24 @@
 
 .poster-list{
 	position: relative;
+	margin: 20px auto;
 }
 .poster-item{
  position: absolute;
  left: 100px;
+ // overflow: hidden;
 
+}
+
+.poster-item img {
+	width:100%;
 }
 
 .poster-prev-btn{
 	width: 100px;
 	height: 270px;
+	top:0;
+	left:0;
 	background: url(images/btn_l.png) no-repeat 50% 50%;
 }
 .poster-next-btn{
@@ -39,4 +46,5 @@
 	height: 270px;
 	right: 0;
 	background: url(images/btn_r.png) no-repeat 50% 50%;
+	top:0;
 }

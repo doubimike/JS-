@@ -8,7 +8,13 @@
 	<script src="carousel.js"></script>
 </head>
 <body>
-	<div class="J_Poster poster-main">
+	<div class="J_Poster poster-main" data-setting='{"width":1000,
+				"height":270,
+				"posterWidth":640,
+				"posterHeight":270,
+				"verticalAlign":"middle",
+				"scale":0.9,
+				"speed":300}'>
 		<div class="poster-btn poster-prev-btn"></div>
 		<ul class="poster-list">
 			<li class="poster-item"><a href="#"><img src="images/1.jpg" alt=""></a></li>
@@ -17,11 +23,20 @@
 			<li class="poster-item"><a href="#"><img src="images/4.jpg" alt=""></a></li>
 			<li class="poster-item"><a href="#"><img src="images/5.jpg" alt=""></a></li>
 			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
 		</ul>
 		<div class="poster-btn poster-next-btn"></div>
 	</div>
 
-	<div class="J_Poster poster-main">
+	<div class="J_Poster poster-main" data-setting='{"width":1000,
+				"height":270,
+				"posterWidth":640,
+				"posterHeight":270,
+				"verticalAlign":"bottom",
+				"scale":0.5,
+				"speed":500}'>
 		<div class="poster-btn poster-prev-btn"></div>
 		<ul class="poster-list">
 			<li class="poster-item"><a href="#"><img src="images/1.jpg" alt=""></a></li>
@@ -29,6 +44,32 @@
 			<li class="poster-item"><a href="#"><img src="images/3.jpg" alt=""></a></li>
 			<li class="poster-item"><a href="#"><img src="images/4.jpg" alt=""></a></li>
 			<li class="poster-item"><a href="#"><img src="images/5.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
+		</ul>
+		<div class="poster-btn poster-next-btn"></div>
+	</div>
+
+	<div class="J_Poster poster-main" data-setting='{"width":1000,
+				"height":270,
+				"posterWidth":640,
+				"posterHeight":270,
+				"verticalAlign":"top",
+				"scale":0.7,
+				"autoPlay":true,
+				"delay":1000,
+				"speed":500}'>
+		<div class="poster-btn poster-prev-btn"></div>
+		<ul class="poster-list">
+			<li class="poster-item"><a href="#"><img src="images/1.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/2.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/3.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/4.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/5.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
+			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
 			<li class="poster-item"><a href="#"><img src="images/6.jpg" alt=""></a></li>
 		</ul>
 		<div class="poster-btn poster-next-btn"></div>
@@ -38,11 +79,7 @@
 		$(function() {
 			// Carousel
 
-			Carousel.init($('.J_Poster'));
-
-			
-				 $('.J_Poster')[0].instance.m();
-			
+			Carousel.init($('.J_Poster'));			
 
 		});
 	</script>
