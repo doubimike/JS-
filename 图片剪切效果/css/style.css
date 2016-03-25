@@ -7,14 +7,16 @@ body {
   left: 0;
   width: 200px;
   height: 200px;
-  background-color: red;
-  opacity: .5;
-  overflow: hidden; }
+  overflow: hidden;
+  z-index: 3; }
   .drag-area:hover {
     cursor: move; }
 
 #container {
-  position: relative; }
+  position: relative;
+  width: 460px;
+  height: 360px;
+  font-size: 0; }
 
 .bottom-pic {
   opacity: .5; }
@@ -23,6 +25,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  clip: rect(0, 200px, 200px, 0); }
+  clip: rect(0, 200px, 200px, 0);
+  z-index: 2; }
 
 /*# sourceMappingURL=style.css.map */

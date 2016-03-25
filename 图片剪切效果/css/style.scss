@@ -8,16 +8,20 @@ body {
 	left: 0;
 	width: 200px;
 	height: 200px;
-	background-color: red;
-	opacity: .5;
+	// background-color: red;
+	// opacity: .5;
 	overflow: hidden;
+	z-index: 3;
 	&:hover {
 		cursor: move;
 	}
 }
 
 #container {
-	position: relative;
+	position:relative;
+	width:460px;
+	height: 360px;
+	font-size: 0;
 }
 
 .bottom-pic {
@@ -29,4 +33,5 @@ position: absolute;
 left:0;
 top: 0;
 clip: rect(0,200px,200px,0);	
+z-index: 2;
 }
