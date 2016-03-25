@@ -5,11 +5,11 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 50px;
-  height: 50px;
-  background-color: red;
-  opacity: 1;
+  width: 200px;
+  height: 200px;
   overflow: hidden; }
+  .drag-area:hover {
+    cursor: move; }
 
 #container {
   position: relative; }
@@ -19,9 +19,8 @@ body {
 
 .front-pic {
   position: absolute;
-  top: 20px; }
-
-.drag-pos {
-  position: relative; }
+  left: 0;
+  top: 0;
+  clip: rect(0, 200px, 200px, 0); }
 
 /*# sourceMappingURL=style.css.map */

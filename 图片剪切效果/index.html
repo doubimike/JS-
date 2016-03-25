@@ -10,18 +10,18 @@
 </head>
 <!-- 实现思路
 上面的图片随着区域的移动而改变自己的位置。
+有了clip属性就好办了。我自己就可以实现。
  -->
 
 <body>
     <div id="container">
         <img src="images/1.jpg" alt="" class="bottom-pic">
-        <div class="drag-pos">
+        <img src="images/1.jpg" alt="" class="front-pic">
             <div class="drag-area">
             </div>
-            <img src="images/1.jpg" alt="" class="front-pic">
-        </div>
+            
     </div>
-    <div>
+    <div class="preview">
         <img src="images/1.jpg" alt="">
     </div>
 </body>
