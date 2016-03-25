@@ -17,4 +17,11 @@ body {
 .bottom-pic {
   opacity: .5; }
 
+.front-pic {
+  position: absolute;
+  top: 20px; }
+
+.drag-pos {
+  position: relative; }
+
 /*# sourceMappingURL=style.css.map */
