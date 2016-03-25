@@ -8,6 +8,8 @@ body {
 	left: 0;
 	width: 200px;
 	height: 200px;
+	background-color: red;
+	opacity: .5;
 	overflow: hidden;
 	&:hover {
 		cursor: move;
