@@ -13,17 +13,24 @@
 有了clip属性就好办了。我自己就可以实现。
  -->
 
-<body onselectstart="return false;" >
+<body onselectstart="return false;">
     <div id="container">
         <img src="images/1.jpg" alt="" class="bottom-pic">
         <img src="images/1.jpg" alt="" class="front-pic">
-            <div class="drag-area">
-            </div>
-            
+        <div class="drag-area" id="main">
+            <div class="drag-item" id="left-top"></div>
+            <div class="drag-item" id="middle-top"></div>
+            <div class="drag-item" id="right-top"></div>
+            <div class="drag-item" id="left-middle"></div>
+            <div class="drag-item" id="right-middle"></div>
+            <div class="drag-item" id="left-bottom"></div>
+            <div class="drag-item" id="middle-bottom"></div>
+            <div class="drag-item" id="right-bottom"></div>
+        </div>
     </div>
-    <div class="preview">
+    <!-- <div class="preview">
         <img src="images/1.jpg" alt="">
-    </div>
+    </div> -->
 </body>
 
 </html>
