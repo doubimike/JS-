@@ -1,7 +1,7 @@
 // // 1.实现拖拽效果先咯
 
 // window.onload = function() {
-//     var dragArea = document.getElementsByClassName('drag-area')[0],
+//     var main = document.getElementsByClassName('drag-area')[0],
 //         frontPic = document.getElementsByClassName('front-pic')[0],
 //         container = document.getElementById('container'),
 //         cw = container.offsetWidth,
@@ -198,7 +198,9 @@ window.onload = function() {
                 rightDrag(e);
                 downDrag(e);
                 break;
-        }
+        };
+        changeDrag();
+        changFrontPic();
     });
 
 
@@ -210,7 +212,6 @@ window.onload = function() {
             var newLeft = -(beforeLeft - x) + beforeOffsetLeft;
             main.style.width = newWidth + 'px';
             main.style.left = newLeft + 'px';
-            changeDrag();
         }
     }
 
@@ -221,7 +222,6 @@ window.onload = function() {
             var newTop = -(beforeTop - y) + beforeOffsetTop;
             main.style.height = newHeight + 'px';
             main.style.top = newTop + 'px';
-            changeDrag();
         }
     }
 
@@ -230,7 +230,6 @@ window.onload = function() {
             var y = e.clientY;
             var newHeight = y - beforeTop;
             main.style.height = newHeight + 'px';
-            changeDrag();
         }
     }
 
@@ -239,7 +238,6 @@ window.onload = function() {
             var x = e.clientX;
             var newWidth = x - beforeLeft;
             main.style.width = newWidth + 'px';
-            changeDrag();
         }
     }
 
@@ -257,6 +255,11 @@ window.onload = function() {
         rt.style.left = (w - 5) + 'px';
         rm.style.left = (w - 5) + 'px';
         rb.style.left = (w - 5) + 'px';
+    }
+
+    var frontPic = document.getElementsByClassName('front-pic')[0];
+    function changFrontPic() {
+    	 frontPic.style.clip = 'rect(' + main.offsetTop + 'px,' + ( main.offsetLeft + main.offsetWidth) + 'px,' + (main.offsetTop + main.offsetHeight) + 'px,' + main.offsetLeft + 'px)';
     }
 
 
