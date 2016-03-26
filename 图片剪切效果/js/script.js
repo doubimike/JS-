@@ -5,55 +5,69 @@ window.onload = function() {
         frontPic = document.getElementsByClassName('front-pic')[0],
         container = document.getElementById('container'),
         cw = container.offsetWidth,
-        ch = container.offsetHeight;
+        ch = container.offsetHeight,
+        flag = 0,
+        oldx, oldy, oldt, oldl;
+
 
     function move(e) {
-        var oldx = e.clientX,
-            oldy = e.clientY,
-            oldt = dragArea.offsetTop,
-            oldl = dragArea.offsetLeft,
+        if (flag) {
             dw = dragArea.offsetWidth,
-            dh = dragArea.offsetHeight,
-            // 鼠标距离dragearea的左和高
-            disx = oldx - oldl,
-            disy = oldy - oldt;
+                dh = dragArea.offsetHeight;
+                
 
-        function movePos(e1) {
-            var newx = e1.clientX,
-                newy = e1.clientY,
+            var newx = e.clientX,
+                newy = e.clientY,
                 moveY = newy - oldy,
                 moveX = newx - oldx,
                 newT = moveY + oldt,
                 newL = moveX + oldl,
-            maxL = cw - dw - oldl,
-            maxT = ch - dh - oldt;
+                maxL = cw - dw,
+                maxT = ch - dh;
+                console.log(moveX,moveY)
 
             if (newL < 0) {
                 newL = 0;
-            }
+            };
             if (newL > maxL) {
                 newL = maxL;
-            }
+            };
 
-            if (newT < 0) { newT = 0 }
-            if (newT > maxT) { newT = maxT }
+            if (newT < 0) { newT = 0 };
+            if (newT > maxT) { newT = maxT };
+
+            console.log(maxT,maxL,newT,newL);
+
             dragArea.style.top = newT + 'px';
             dragArea.style.left = newL + 'px';
             frontPic.style.clip = 'rect(' + newT + 'px,' + (newL + dw) + 'px,' + (newT + dh) + 'px,' + newL + 'px)';
+
+
+
+
         }
-
-        dragArea.addEventListener('mousemove', movePos);
-
-        dragArea.addEventListener('mouseup', function() {
-            dragArea.removeEventListener('mousemove', movePos);
-        });
     }
 
+    dragArea.addEventListener('mousemove', move);
 
 
 
+    dragArea.addEventListener('mousedown', function(e) {
+        flag = 1;
+        oldx = e.clientX,
+            oldy = e.clientY,
+            oldt = dragArea.offsetTop,
+            oldl = dragArea.offsetLeft,
+            // 鼠标距离dragearea的左和高
+                disx = oldx - oldl,
+                disy = oldy - oldt;
+                console.log(disx,disy)
+    });
 
-    dragArea.addEventListener('mousedown', move);
+    document.body.addEventListener('mouseup', function() {
+        flag = 0;
+    });
+
 
 
 
