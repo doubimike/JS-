@@ -130,6 +130,10 @@ window.onload = function() {
     var lb = document.getElementById('left-bottom');
     var mb = document.getElementById('middle-bottom');
     var rb = document.getElementById('right-bottom');
+    var flag = 0;
+    var container = document.getElementById('container');
+    var cw= container.offsetWidth;
+    var ch= container.offsetHeight;
 
 
 
@@ -141,15 +145,26 @@ window.onload = function() {
         beforeTop = getPos(main).top;
         beforeOffsetLeft = main.offsetLeft;
         beforeOffsetTop = main.offsetTop;
+        oldx = e.clientX;
+        oldy = e.clientY;
+        disx = oldx - getPos(main).left;
+        disy = oldy - getPos(main).top;
+        mainP = getPos(main.offsetParent);
+
 
         target = e.target;
         if (/drag-item/.test(target.className)) {
             keyDown = 1;
         }
         id = target.id;
+
+        if (id == 'main') {
+            flag = 1;
+        }
     });
     window.addEventListener('mouseup', function(e) {
         keyDown = 0;
+        flag = 0;
     });
 
     function getPos(node) {
@@ -201,6 +216,7 @@ window.onload = function() {
         };
         changeDrag();
         changFrontPic();
+        if (flag == 1) { totalDrag(e); }
     });
 
 
@@ -241,7 +257,6 @@ window.onload = function() {
         }
     }
 
-
     function changeDrag() {
         var w = main.offsetWidth;
         var h = main.offsetHeight;
@@ -258,8 +273,28 @@ window.onload = function() {
     }
 
     var frontPic = document.getElementsByClassName('front-pic')[0];
+
     function changFrontPic() {
-    	 frontPic.style.clip = 'rect(' + main.offsetTop + 'px,' + ( main.offsetLeft + main.offsetWidth) + 'px,' + (main.offsetTop + main.offsetHeight) + 'px,' + main.offsetLeft + 'px)';
+        frontPic.style.clip = 'rect(' + main.offsetTop + 'px,' + (main.offsetLeft + main.offsetWidth) + 'px,' + (main.offsetTop + main.offsetHeight) + 'px,' + main.offsetLeft + 'px)';
+    }
+
+    function totalDrag(e) {
+
+        var newx = e.clientX;
+        var newy = e.clientY;
+        var newt = newy - mainP.top - disy;
+        var newl = newx - mainP.left - disx;
+        var maxy =ch-main.offsetHeight-1; 
+        var maxx = cw-main.offsetWidth -1;
+
+        if (newt < 0) { newt = 0 };
+        if(newt>maxy){newt=maxy};
+        if (newl < 0) { newl = 0 };
+        if(newl>maxx){newl=maxx};
+
+        main.style.left = newl + 'px';
+        main.style.top = newt + 'px';
+
     }
 
 
