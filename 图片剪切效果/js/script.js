@@ -121,12 +121,27 @@
 // 原理分析：需要求出move的距离 = clientX - 原始的到屏幕左边的距离，所以先定义一个函数获得元素距离屏幕左边的距离
 window.onload = function() {
     var main = document.getElementById('main');
-    var leftTop = document.getElementById('left-top');
-    var leftMiddle = document.getElementById('left-middle');
     var keyDown = 0;
+    var lf = document.getElementById('left-top');
+    var mt = document.getElementById('middle-top');
+    var rt = document.getElementById('right-top');
+    var lm = document.getElementById('left-middle');
+    var rm = document.getElementById('right-middle');
+    var lb = document.getElementById('left-bottom');
+    var mb = document.getElementById('middle-bottom');
+    var rb = document.getElementById('right-bottom');
+
+
 
     var id;
     window.addEventListener('mousedown', function(e) {
+        oldWidth = main.offsetWidth - 2;
+        oldHeight = main.offsetHeight - 2;
+        beforeLeft = getPos(main).left;
+        beforeTop = getPos(main).top;
+        beforeOffsetLeft = main.offsetLeft;
+        beforeOffsetTop = main.offsetTop;
+
         target = e.target;
         if (/drag-item/.test(target.className)) {
             keyDown = 1;
@@ -154,7 +169,6 @@ window.onload = function() {
     }
 
     window.addEventListener('mousemove', function(e) {
-        console.log(id)
         switch (id) {
             case 'left-top':
                 leftDrag(e);
@@ -187,12 +201,7 @@ window.onload = function() {
         }
     });
 
-    var oldWidth = main.offsetWidth - 2;
-    var oldHeight = main.offsetHeight - 2;
-    var beforeLeft = getPos(main).left;
-    var beforeTop = getPos(main).top;
-    var beforeOffsetLeft = main.offsetLeft;
-    var beforeOffsetTop = main.offsetTop;
+
 
     function leftDrag(e) {
         if (keyDown) {
@@ -201,6 +210,7 @@ window.onload = function() {
             var newLeft = -(beforeLeft - x) + beforeOffsetLeft;
             main.style.width = newWidth + 'px';
             main.style.left = newLeft + 'px';
+            changeDrag();
         }
     }
 
@@ -211,6 +221,7 @@ window.onload = function() {
             var newTop = -(beforeTop - y) + beforeOffsetTop;
             main.style.height = newHeight + 'px';
             main.style.top = newTop + 'px';
+            changeDrag();
         }
     }
 
@@ -219,6 +230,7 @@ window.onload = function() {
             var y = e.clientY;
             var newHeight = y - beforeTop;
             main.style.height = newHeight + 'px';
+            changeDrag();
         }
     }
 
@@ -227,7 +239,24 @@ window.onload = function() {
             var x = e.clientX;
             var newWidth = x - beforeLeft;
             main.style.width = newWidth + 'px';
+            changeDrag();
         }
+    }
+
+
+    function changeDrag() {
+        var w = main.offsetWidth;
+        var h = main.offsetHeight;
+        lm.style.top = (h / 2 - 5) + 'px';
+        lb.style.top = (h - 5) + 'px';
+        rm.style.top = (h / 2 - 5) + 'px';
+        mb.style.top = (h - 5) + 'px';
+        rb.style.top = (h - 5) + 'px';
+        mt.style.left = (w / 2 - 5) + 'px';
+        mb.style.left = (w / 2 - 5) + 'px';
+        rt.style.left = (w - 5) + 'px';
+        rm.style.left = (w - 5) + 'px';
+        rb.style.left = (w - 5) + 'px';
     }
 
 
