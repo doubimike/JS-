@@ -1,0 +1,43 @@
+body {
+    background-color: #333;
+}
+
+.bg-div {
+    background-image: url(../images/river.jpg);
+    width: 1228px;
+    height: 690px;
+    margin: 0 auto;
+}
+
+.search-box {
+	position: absolute;
+	top:200px;
+	left: 300px;
+}
+.logo {
+    background-image: url(../images/logo.png);
+    width: 107px;
+    height: 53px;
+    float: left;
+}
+
+form {
+    float: left;
+    background-color: #fff;
+    padding: 5px;
+    .serach-input-text {
+        border: 0;
+        float: left;
+        height: 25px;
+        line-height: 25px;
+        outline: none;
+        width: 350px;
+    }
+    .serach-input-button {
+        border: 0;
+        background-image: url(../images/search-button.png);
+        width:29px;
+        height: 29px;
+        float: left;
+    }
+}
