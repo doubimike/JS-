@@ -7,6 +7,7 @@ body {
     width: 1228px;
     height: 690px;
     margin: 0 auto;
+    position: relative;
 }
 
 .search-box {
@@ -19,6 +20,7 @@ body {
     width: 107px;
     height: 53px;
     float: left;
+    margin: -4px 18px 0 0;
 }
 
 form {
@@ -40,4 +42,26 @@ form {
         height: 29px;
         float: left;
     }
+
+}
+
+.suggest {
+	width: 388px;
+	background-color: #fff;
+	border: 1px solid #999;
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		li{
+			padding: 3px;
+			font-size: 14px;
+			line-height: 25px;
+			cursor: pointer;
+			&:hover {
+				background-color: #e5e5e5;
+				text-decoration: underline;
+			}
+		}
+	}
 }

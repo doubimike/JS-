@@ -78,7 +78,7 @@ window.onload = function() {
             ss.style.top = getElementTop(getDOM('search-form')) + 38 + 'px';
             ss.style.left = getElementLeft(getDOM('search-form')) + 'px';
             ss.style.position = 'absolute';
-             ss.style.display = 'block';
+            ss.style.display = 'block';
         });
 
     })
@@ -108,6 +108,17 @@ window.onload = function() {
         _xhr.send(null);
     }
 
+    var delegateEvent = function(target, event, fn) {
+        addEvent(document, event, function(e) {
+            if (e.target.nodeName == target.toUpperCase()) {
+                fn.call(e.target);
+            }
+        });
+    }
 
+    delegateEvent('li','click',function () {
+    	 var keyword = this.innerHTML;
+    	 location.href = 'http://cn.bing.com/search?q='+keyword; 
+    });
 
 }
