@@ -1,5 +1,6 @@
 //  先实现拖拽效果
 // 原理分析：需要求出move的距离 = clientX - 原始的到屏幕左边的距离，所以先定义一个函数获得元素距离屏幕左边的距离
+document.onselectstart=new Function('event.returnValue=false;');
 window.onload = function() {
     var main = document.getElementById('main');
     var keyDown = 0;
@@ -94,8 +95,10 @@ window.onload = function() {
                 downDrag(e);
                 break;
         };
+        setPreview();
         changeDrag();
         changFrontPic();
+        
         if (flag == 1) { totalDrag(e); }
     });
 
@@ -182,5 +185,14 @@ window.onload = function() {
 
         main.style.left = newl + 'px';
         main.style.top = newt + 'px';
+        setPreview();
+    }
+
+    // preview
+    var preview = document.getElementById('preview');
+    function setPreview () {
+    	 preview.style.width = main.offsetWidth +'px';
+    	 preview.style.height = main.offsetHeight +'px';
+    	 preview.style.backgroundPosition = -main.offsetLeft +'px ' + -main.offsetTop+'px';
     }
 }
