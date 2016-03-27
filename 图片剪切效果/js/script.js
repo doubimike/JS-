@@ -1,122 +1,3 @@
-// // 1.实现拖拽效果先咯
-
-// window.onload = function() {
-//     var main = document.getElementsByClassName('drag-area')[0],
-//         frontPic = document.getElementsByClassName('front-pic')[0],
-//         container = document.getElementById('container'),
-//         cw = container.offsetWidth,
-//         ch = container.offsetHeight,
-//         flag = 0,
-//         oldx, oldy, oldt, oldl;
-//         flag2 = 0;
-
-
-//     function move(e) {
-//         if (flag) {
-//             dw = dragArea.offsetWidth,
-//                 dh = dragArea.offsetHeight;
-
-
-//             var newx = e.clientX,
-//                 newy = e.clientY,
-//                 moveY = newy - oldy,
-//                 moveX = newx - oldx,
-//                 newT = moveY + oldt,
-//                 newL = moveX + oldl,
-//                 maxL = cw - dw,
-//                 maxT = ch - dh;
-//                 console.log(moveX,moveY)
-
-//             if (newL < 0) {
-//                 newL = 0;
-//             };
-//             if (newL > maxL) {
-//                 newL = maxL;
-//             };
-
-//             if (newT < 0) { newT = 0 };
-//             if (newT > maxT) { newT = maxT };
-
-//             console.log(maxT,maxL,newT,newL);
-
-//             dragArea.style.top = newT + 'px';
-//             dragArea.style.left = newL + 'px';
-//             frontPic.style.clip = 'rect(' + newT + 'px,' + (newL + dw) + 'px,' + (newT + dh) + 'px,' + newL + 'px)';
-
-
-
-
-//         }
-//     }
-
-//     dragArea.addEventListener('mousemove', move);
-
-
-
-//     dragArea.addEventListener('mousedown', function(e) {
-//         flag = 1;
-//         oldx = e.clientX,
-//             oldy = e.clientY,
-//             oldt = dragArea.offsetTop,
-//             oldl = dragArea.offsetLeft,
-//             // 鼠标距离dragearea的左和高
-//                 disx = oldx - oldl,
-//                 disy = oldy - oldt;
-//     });
-
-//     document.body.addEventListener('mouseup', function() {
-//         flag = 0;
-//     });
-
-//     var dragItems = document.getElementsByClassName('drag-item');
-
-//    var i1 = document.getElementById('id1');
-//    i1.addEventListener('mousedown',getPos);
-
-//     function getPos (e) {
-
-//     	flag2=1
-//     	e.stopPropagation();
-//     	 px1 = e.clientX;
-//     	 py1 = e.clientY;
-//     	 // console.log(px1,py1)
-//     	 o=dragArea.offsetLeft;
-//     	 oy = dragArea.offsetTop;
-//     	 w = dragArea.offsetWidth;
-//     	 h=dragArea.offsetHeight;
-
-//     	 document.body.addEventListener('mousemove',move2);
-//     }
-
-//     function move2 (e) {
-//     	 e.stopPropagation();
-//     	 if (flag2=1) {
-//     	     	 px2 = e.clientX;
-//     	 py2 = e.clientY;
-//     	 xc = px2-px1;
-//     	 yc = py2-py1;
-//     	 console.log(px2,py2);
-//     	 dragArea.style.width = (w-xc)+'px';
-//     	 dragArea.style.left = (o +xc)+'px';
-//     	 dragArea.style.height = (h-yc)+'px';
-//     	 dragArea.style.top = (o +yc)+'px';
-//     	 frontPic.style.clip = 'rect(' + dragArea.offsetTop + 'px,' + ( dragArea.offsetLeft + dragArea.offsetWidth) + 'px,' + (dragArea.offsetTop + dragArea.offsetHeight) + 'px,' + dragArea.offsetLeft + 'px)';
-//     }
-//     }
-
-
-
-
-//     i1.addEventListener('mouseup', function(e) {
-//     	flag2=0;
-//         document.body.removeEventListener('mousemove', move2);
-//     });
-
-
-// }
-
-// 重来
-
 //  先实现拖拽效果
 // 原理分析：需要求出move的距离 = clientX - 原始的到屏幕左边的距离，所以先定义一个函数获得元素距离屏幕左边的距离
 window.onload = function() {
@@ -132,11 +13,10 @@ window.onload = function() {
     var rb = document.getElementById('right-bottom');
     var flag = 0;
     var container = document.getElementById('container');
-    var cw= container.offsetWidth;
-    var ch= container.offsetHeight;
-
-
-
+    var cw = container.offsetWidth;
+    var ch = container.offsetHeight;
+    var cot = getPos(container).top;
+    var col = getPos(container).left;
     var id;
     window.addEventListener('mousedown', function(e) {
         oldWidth = main.offsetWidth - 2;
@@ -219,13 +99,15 @@ window.onload = function() {
         if (flag == 1) { totalDrag(e); }
     });
 
-
-
     function leftDrag(e) {
         if (keyDown) {
             var x = e.clientX;
-            var newWidth = -x + beforeLeft + oldWidth;
-            var newLeft = -(beforeLeft - x) + beforeOffsetLeft;
+            var z = beforeLeft - x;
+            if (z < -oldWidth) { z = -oldWidth };
+            if (z > beforeOffsetLeft) { z = beforeOffsetLeft };
+            var newWidth = z + oldWidth;
+            var newLeft = -z + beforeOffsetLeft;
+
             main.style.width = newWidth + 'px';
             main.style.left = newLeft + 'px';
         }
@@ -234,8 +116,13 @@ window.onload = function() {
     function upDrag(e) {
         if (keyDown) {
             var y = e.clientY;
-            var newHeight = -y + beforeTop + oldHeight;
-            var newTop = -(beforeTop - y) + beforeOffsetTop;
+            var z = beforeTop - y;
+            if (z > beforeOffsetTop) { z = beforeOffsetTop };
+            if (z < -oldHeight) { z = -oldHeight };
+            var newHeight = z + oldHeight;
+
+            var newTop = -(z) + beforeOffsetTop;
+
             main.style.height = newHeight + 'px';
             main.style.top = newTop + 'px';
         }
@@ -245,6 +132,7 @@ window.onload = function() {
         if (keyDown) {
             var y = e.clientY;
             var newHeight = y - beforeTop;
+            if (newHeight > cot + ch - beforeTop)(newHeight = cot + ch - beforeTop);
             main.style.height = newHeight + 'px';
         }
     }
@@ -253,6 +141,7 @@ window.onload = function() {
         if (keyDown) {
             var x = e.clientX;
             var newWidth = x - beforeLeft;
+            if (newWidth > col + cw - beforeLeft) { newWidth = col + cw - beforeLeft };
             main.style.width = newWidth + 'px';
         }
     }
@@ -279,24 +168,19 @@ window.onload = function() {
     }
 
     function totalDrag(e) {
-
         var newx = e.clientX;
         var newy = e.clientY;
         var newt = newy - mainP.top - disy;
         var newl = newx - mainP.left - disx;
-        var maxy =ch-main.offsetHeight-1; 
-        var maxx = cw-main.offsetWidth -1;
+        var maxy = ch - main.offsetHeight - 1;
+        var maxx = cw - main.offsetWidth - 1;
 
         if (newt < 0) { newt = 0 };
-        if(newt>maxy){newt=maxy};
+        if (newt > maxy) { newt = maxy };
         if (newl < 0) { newl = 0 };
-        if(newl>maxx){newl=maxx};
+        if (newl > maxx) { newl = maxx };
 
         main.style.left = newl + 'px';
         main.style.top = newt + 'px';
-
     }
-
-
-
 }
