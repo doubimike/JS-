@@ -30,38 +30,43 @@ body {
 
 	}
 	#middle-top {
-		left:95px;
+		left:50%;
+		margin-left: -5px;
 		top:-5px;
 	}
 
 	#right-top {
-		left: 195px;
+		right:-5px;
 		top:-5px;
 	}
 
 	#left-middle {
 		left:-5px;
-		top:95px;
+		top:50%;
+		margin-top: -5px;
 	}
 
 	#right-middle {
-	left:195px;
-		top:95px;	
+		right:-5px;
+	
+		top:50%;
+		margin-top: -5px;	
 	}
 
 	#left-bottom{
 		left:-5px;
-		top:195px;
+		bottom:-5px;
 	}
 
 #middle-bottom {
-		left:95px;
-		top:195px;
+		left:50%;
+		margin-left: -5px;
+		bottom:-5px;
 	}
 
 	#right-bottom {
-		left:195px;
-		top:195px;
+		right: -5px;
+		bottom:-5px;
 	}
 	
 }

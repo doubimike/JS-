@@ -1,17 +1,9 @@
 //  先实现拖拽效果
 // 原理分析：需要求出move的距离 = clientX - 原始的到屏幕左边的距离，所以先定义一个函数获得元素距离屏幕左边的距离
-document.onselectstart=new Function('event.returnValue=false;');
+document.onselectstart = new Function('event.returnValue=false;');
 window.onload = function() {
     var main = document.getElementById('main');
     var keyDown = 0;
-    var lf = document.getElementById('left-top');
-    var mt = document.getElementById('middle-top');
-    var rt = document.getElementById('right-top');
-    var lm = document.getElementById('left-middle');
-    var rm = document.getElementById('right-middle');
-    var lb = document.getElementById('left-bottom');
-    var mb = document.getElementById('middle-bottom');
-    var rb = document.getElementById('right-bottom');
     var flag = 0;
     var container = document.getElementById('container');
     var cw = container.offsetWidth;
@@ -32,7 +24,6 @@ window.onload = function() {
         disy = oldy - getPos(main).top;
         mainP = getPos(main.offsetParent);
 
-
         target = e.target;
         if (/drag-item/.test(target.className)) {
             keyDown = 1;
@@ -52,7 +43,6 @@ window.onload = function() {
         var left = node.offsetLeft;
         var top = node.offsetTop;
         var parent = node.offsetParent;
-
         while (parent != null) {
             left += parent.offsetLeft;
             top += parent.offsetTop;
@@ -65,108 +55,84 @@ window.onload = function() {
     }
 
     window.addEventListener('mousemove', function(e) {
-        switch (id) {
-            case 'left-top':
-                leftDrag(e);
-                upDrag(e);
-                break;
-            case 'left-middle':
-                leftDrag(e);
-                break;
-            case 'left-bottom':
-                leftDrag(e);
-                downDrag(e);
-                break;
-            case 'middle-top':
-                upDrag(e);
-                break;
-            case 'middle-bottom':
-                downDrag(e);
-                break;
-            case 'right-top':
-                rightDrag(e);
-                upDrag(e);
-                break;
-            case 'right-middle':
-                rightDrag(e);
-                break;
-            case 'right-bottom':
-                rightDrag(e);
-                downDrag(e);
-                break;
-        };
+        if (keyDown) {
+            switch (id) {
+                case 'left-top':
+                    leftDrag(e);
+                    upDrag(e);
+                    break;
+                case 'left-middle':
+                    leftDrag(e);
+                    break;
+                case 'left-bottom':
+                    leftDrag(e);
+                    downDrag(e);
+                    break;
+                case 'middle-top':
+                    upDrag(e);
+                    break;
+                case 'middle-bottom':
+                    downDrag(e);
+                    break;
+                case 'right-top':
+                    rightDrag(e);
+                    upDrag(e);
+                    break;
+                case 'right-middle':
+                    rightDrag(e);
+                    break;
+                case 'right-bottom':
+                    rightDrag(e);
+                    downDrag(e);
+                    break;
+            };
+        }
         setPreview();
-        changeDrag();
         changFrontPic();
-        
+
         if (flag == 1) { totalDrag(e); }
     });
 
     function leftDrag(e) {
-        if (keyDown) {
-            var x = e.clientX;
-            var z = beforeLeft - x;
-            if (z < -oldWidth) { z = -oldWidth };
-            if (z > beforeOffsetLeft) { z = beforeOffsetLeft };
-            var newWidth = z + oldWidth;
-            var newLeft = -z + beforeOffsetLeft;
+        var x = e.clientX;
+        var z = beforeLeft - x;
+        if (z < -oldWidth) { z = -oldWidth };
+        if (z > beforeOffsetLeft) { z = beforeOffsetLeft };
+        var newWidth = z + oldWidth;
+        var newLeft = -z + beforeOffsetLeft;
+        main.style.width = newWidth + 'px';
+        main.style.left = newLeft + 'px';
 
-            main.style.width = newWidth + 'px';
-            main.style.left = newLeft + 'px';
-        }
     }
 
     function upDrag(e) {
-        if (keyDown) {
-            var y = e.clientY;
-            var z = beforeTop - y;
-            if (z > beforeOffsetTop) { z = beforeOffsetTop };
-            if (z < -oldHeight) { z = -oldHeight };
-            var newHeight = z + oldHeight;
-
-            var newTop = -(z) + beforeOffsetTop;
-
-            main.style.height = newHeight + 'px';
-            main.style.top = newTop + 'px';
-        }
+        var y = e.clientY;
+        var z = beforeTop - y;
+        if (z > beforeOffsetTop) { z = beforeOffsetTop };
+        if (z < -oldHeight) { z = -oldHeight };
+        var newHeight = z + oldHeight;
+        var newTop = -(z) + beforeOffsetTop;
+        main.style.height = newHeight + 'px';
+        main.style.top = newTop + 'px';
     }
 
     function downDrag(e) {
-        if (keyDown) {
-            var y = e.clientY;
-            var newHeight = y - beforeTop;
-            if (newHeight > cot + ch - beforeTop)(newHeight = cot + ch - beforeTop);
-            main.style.height = newHeight + 'px';
-        }
+        var y = e.clientY;
+        var newHeight = y - beforeTop;
+        if (newHeight > cot + ch - beforeTop)(newHeight = cot + ch - beforeTop);
+        main.style.height = newHeight + 'px';
     }
+
 
     function rightDrag(e) {
-        if (keyDown) {
-            var x = e.clientX;
-            var newWidth = x - beforeLeft;
-            if (newWidth > col + cw - beforeLeft) { newWidth = col + cw - beforeLeft };
-            main.style.width = newWidth + 'px';
-        }
+        var x = e.clientX;
+        var newWidth = x - beforeLeft;
+        if (newWidth > col + cw - beforeLeft) { newWidth = col + cw - beforeLeft };
+        main.style.width = newWidth + 'px';
     }
-
-    function changeDrag() {
-        var w = main.offsetWidth;
-        var h = main.offsetHeight;
-        lm.style.top = (h / 2 - 5) + 'px';
-        lb.style.top = (h - 5) + 'px';
-        rm.style.top = (h / 2 - 5) + 'px';
-        mb.style.top = (h - 5) + 'px';
-        rb.style.top = (h - 5) + 'px';
-        mt.style.left = (w / 2 - 5) + 'px';
-        mb.style.left = (w / 2 - 5) + 'px';
-        rt.style.left = (w - 5) + 'px';
-        rm.style.left = (w - 5) + 'px';
-        rb.style.left = (w - 5) + 'px';
-    }
-
-    var frontPic = document.getElementsByClassName('front-pic')[0];
 
     function changFrontPic() {
+    	var frontPic = document.getElementsByClassName('front-pic')[0];
         frontPic.style.clip = 'rect(' + main.offsetTop + 'px,' + (main.offsetLeft + main.offsetWidth) + 'px,' + (main.offsetTop + main.offsetHeight) + 'px,' + main.offsetLeft + 'px)';
     }
 
@@ -189,10 +155,10 @@ window.onload = function() {
     }
 
     // preview
-    var preview = document.getElementById('preview');
-    function setPreview () {
-    	 preview.style.width = main.offsetWidth +'px';
-    	 preview.style.height = main.offsetHeight +'px';
-    	 preview.style.backgroundPosition = -main.offsetLeft +'px ' + -main.offsetTop+'px';
+    function setPreview() {
+    	var preview = document.getElementById('preview');
+        preview.style.width = main.offsetWidth + 'px';
+        preview.style.height = main.offsetHeight + 'px';
+        preview.style.backgroundPosition = -main.offsetLeft + 'px ' + -main.offsetTop + 'px';
     }
 }
