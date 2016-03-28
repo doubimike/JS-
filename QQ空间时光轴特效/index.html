@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QQ空间时光轴特效</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/data.js"></script>
+    <script src="js/GetLunarDay.js"></script>
+</head>
+
+<body>
+    <div class="hide">
+        <div class="scrubber" id="tpl_scrubber_year">
+            <a href="#" class="scrubber_year current">{year}</a> {list}
+        </div>
+        <div id="tpl_scrubber_month">
+            <a href="#" class="scrubber_month">{month}</a>
+        </div>
+    </div>
+    
+    <div class="top"></div>
+    <div class="header"></div>
+    <div class="container">
+        <div class="scrubber">
+            <a href="#" class="scrubber_year current">2014</a>
+            <a href="#" class="scrubber_month">3月</a>
+            <a href="#" class="scrubber_month">2月</a>
+        </div>
+        <div class="content">
+            <div class="content_year">2014</div>
+            <div class="content_month">3月</div>
+            <div class="content_item">
+                <div class="content_item_icon_arrow"></div>
+                <div class="content_item_icon_dot"></div>
+                <div class="content_item_head">
+                    <div class="content_item_head_title">
+                        <div class="content_item_head_lunar">
+                            三
+                            <br>&nbsp;&nbsp;&nbsp;十
+                        </div>
+                        2014-03-30
+                    </div>
+                    <div class="content_item_head_intro">
+                        <i class="ui_icon quote_before"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque illo culpa magnam beatae laborum iusto atque neque consequatur, odio quas recusandae minus labore porro tempore quis, voluptates incidunt, corporis debitis.
+                        <i class="ui_icon quote_after"></i>
+                    </div>
+                </div>
+                <div class="content_item_media">
+                    <img src="img/psb.jpeg" width="370">
+                </div>
+                <div class="content_item_footer">
+                    <div class="content_item_footer_info">
+                        <a href="#"><i class="icon_zan"></i>(199)</a>
+                        <a href="#"><i class="icon_pin"></i>(2199)</a>
+                    </div>
+                    <div class="content_item_footer_like">
+                        2.5万人觉得很赞
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src="js/main.js"></script>
+</body>
+
+</html>
