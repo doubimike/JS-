@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>FullPage</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.8/jquery.fullPage.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.8/vendors/jquery.easings.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.7.8/jquery.fullPage.min.js"></script>
+	<style>
+		body{
+			color:#fff;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="fullpage">
+		<div class="section">一些内容</div>
+		<div class="section">
+			<div class="slide">1</div>
+			<div class="slide">3</div>
+			<div class="slide">2</div>
+		</div>
+		<div class="section">一些内容</div>
+		<div class="section">一些内容</div>
+	</div>
+	<script>
+		$(function() {
+			$('#fullpage').fullpage({
+				sectionsColor:['green','orange','gray','red'],
+				anchors:['page1','page2','page3','page4'],
+				paddingTop:20,
+				navigation:true,
+			});
+		});
+	</script>
+</body>
+</html>

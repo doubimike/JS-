@@ -1,0 +1,60 @@
+* {
+	margin:0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
+}
+
+.wrapper {
+	width: 800px;
+	margin: 0 auto;
+}
+
+h1 {
+	color: #3f85be;
+	padding: 20px 0 10px;
+}
+
+.shopArea {
+	padding: 20px;
+	border: 1px dotted #3f85be;
+	margin-bottom: 20px;
+}
+
+.shopArea h2 {
+	font-size: 20px;
+	border-bottom: 2px solid #3f85be;
+	padding-bottom: 5px;
+}
+.shopPic {
+	padding-top: 20px;
+}
+.shopPic img {
+	display: inline-block;
+	width: 230px;
+	height: 230px;
+}
+
+.fixed {
+	position:fixed;
+	top: 80px;
+	left: 50%;
+	margin-left: 400px;
+}
+
+.fixed a {
+	display: inline-block;
+	width: 80px;
+	height:50px;
+	line-height: 50px;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+}
+
+.fixed .active, .fixed a:hover {
+	background: #3f85be;
+	color: #fff;
+}

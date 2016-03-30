@@ -1,0 +1,205 @@
+    html,
+    body,
+    div,
+    span {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    
+    .header {
+        width: 1105px;
+        margin: 0 auto;
+        height: 111px;
+        padding: 12px 0 18px;
+        position: relative;
+        *z-index: 1;
+    }
+    
+    .header .logo {
+        height: 86px;
+        width: 256px;
+        margin-top: 25px
+    }
+    
+    .top-nav .navlist-wrap {
+        width: 1050px;
+        margin: 0 auto;
+        position: relative
+    }
+    
+    .top-nav .navlist {
+        position: absolute;
+        right: 130PX;
+        top: -40PX
+    }
+    
+    .top-nav .navlist .nav-btn {
+        float: left;
+        margin-left: 60px;
+        color: #666;
+        vertical-align: middle;
+        text-decoration: none
+    }
+    
+    .navlist .nav-btn span {
+        background: url(images/broswer_home.png) no-repeat -29px -145px;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-left: 4px;
+        vertical-align: middle;
+        *height: 12px;
+        *vertical-align: middle;
+        *cursor: pointer;
+        *letter-spacing: 0;
+        *margin-left: 0;
+        *background-position: -26px -145px
+    }
+    
+    .navlist .btn-active span {
+        background: url(images/broswer_home.png) no-repeat -8px -145px;
+        *background-position: -5px -145px
+    }
+    
+    .top-nav .expand {
+        height: 0px;
+        background-color: #333d4d;
+        overflow: hidden;
+        position: relative;
+        width: 100%
+    }
+    
+    .expand .expdiv {
+        height: 130px;
+        width: 500%;
+    }
+    
+    .expand .expdiv .item {
+        float: left;
+        width: 20%
+    }
+    
+    .expand .expdiv .item-active {
+        display: block
+    }
+    
+    .expand .close-btn {
+        width: 120px;
+        height: 20px;
+        background: url(images/broswer_home.png) no-repeat -13px -117px;
+        position: absolute;
+        left: 50%;
+        bottom: -2px;
+        margin-left: -60px;
+        cursor: pointer;
+    }
+    
+    .expdiv .expdiv-list {
+        text-align: center;
+        height: 56px;
+        padding: 37px;
+        color: White
+    }
+    
+    .expdiv .expdiv-list .btn {
+        display: inline-block;
+        text-decoration: none;
+        color: #586e91;
+        font-size: 18px;
+        line-height: 24px;
+        margin: 0 28px;
+        cursor: pointer
+    }
+    
+    .expdiv .expdiv-list .btn:hover {
+        color: #7896af
+    }
+    
+    .expdiv-list .btn .icon {
+        background-repeat: no-repeat;
+        background-image: url(images/broswer_home.png);
+        height: 56px;
+        width: 56px;
+        float: left
+    }
+    
+    .expdiv-list .btn .text {
+        float: left;
+        padding: 16px 0 16px 16px
+    }
+    
+    .expdiv-list .zj .icon {
+        background-position: -4px 0
+    }
+    
+    .expdiv .expdiv-list .zj {}
+    
+    .expdiv .expdiv-list .zj:hover .icon {
+        background-position: -5px -57px
+    }
+    
+    .expdiv .expdiv-list .sjgj {}
+    
+    .expdiv .expdiv-list .sjgj .icon {
+        background-position: -58px 0
+    }
+    
+    .expdiv .expdiv-list .sjgj:hover .icon {
+        background-position: -59px -58px
+    }
+    
+    .expdiv .expdiv-list .wdj {}
+    
+    .expdiv-list .wdj .icon {
+        background-position: -169px -4px
+    }
+    
+    .expdiv-list .wdj:hover .icon {
+        background-position: -169px -64px
+    }
+    
+    .expdiv .expdiv-list .jy {}
+    
+    .expdiv-list .jy .icon {
+        background-position: -114px 0
+    }
+    
+    .expdiv-list .jy:hover .icon {
+        background-position: -114px -62px
+    }
+    
+    .expdiv-list .apple .icon {
+        background-position: -225px -1px;
+        width: 38px
+    }
+    
+    .expdiv-list .apple:hover .icon {
+        background-position: -225px -58px
+    }
+    
+    .expdiv-list .itools .icon {
+        background-position: -270px 0
+    }
+    
+    .expdiv-list .itools:hover .icon {
+        background-position: -270px -57px
+    }
+    
+    .top-nav .nav-bottom-bg {
+        height: 7px;
+        _font-size: 1px;
+        background-color: #fff
+    }
+    
+    .btm {
+        margin: 30px auto;
+    }
+    
+    .btm p {
+        font: normal 12px/24px 'Microsoft YaHei';
+        text-align: center;
+    }

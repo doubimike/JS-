@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>特效菜单</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <link rel="stylesheet" href="main.css" />
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script language="javascript" type="text/javascript">
+    $(function() {
+        $('#navList').on('click', 'a', function(event) {
+            event.preventDefault();
+            var index = $(this).index(),
+                marginLeft = '-' + index * 100 + '%';
+            if ($('#expandZone').hasClass('active')) {
+                if ($(this).hasClass('btn-active')) {
+                    $('#closeBtn').click();
+                } else {
+                    $(this).siblings().removeClass('btn-active');
+                    $('#expandZone .expdiv').animate({
+                        marginLeft: marginLeft
+                    });
+                    $(this).addClass('btn-active');
+                }
+            } else {
+                $('#expandZone').animate({
+                    height: 130
+                }).addClass('active');
+                $('#expandZone .expdiv').css('margin-left', marginLeft);
+                $(this).addClass('btn-active');
+            }
+
+            $('#closeBtn').on('click', function(event) {
+                event.preventDefault();
+                $('#expandZone').animate({
+                    height: 0
+                }).removeClass('active');
+                $('.nav-btn').removeClass('btn-active');
+            });
+
+        });
+
+
+    });
+    </script>
+</head>
+
+<body>
+    <!-- 代码 开始 -->
+    <div class="wrap">
+        <div class="header">
+            <h1 class="logo">
+                慕课网
+            </h1>
+        </div>
+        <div class="top-nav">
+            <div id="navList" class="navlist-wrap">
+                <div class="navlist clearfix">
+                    <a class="nav-btn" data-device="#homeItem">首页<span>&nbsp;&nbsp;&nbsp;</span></a>
+                    <a class="nav-btn" data-device="#courseItem">课程大厅<span>&nbsp;&nbsp;&nbsp;</span></a>
+                    <a class="nav-btn" data-device="#learnItem">学习中心<span>&nbsp;&nbsp;&nbsp;</span></a>
+                    <a class="nav-btn" data-device="#personalItem">个人中心<span>&nbsp;&nbsp;&nbsp;</span></a>
+                    <a class="nav-btn" data-device="#aboutItem">关于我们<span>&nbsp;&nbsp;&nbsp;</span></a>
+                </div>
+            </div>
+            <div id="expandZone" class="expand">
+                <div class="expdiv">
+                    <div id="homeItem" class="item">
+                        <div class="expdiv-list">
+                            <a href="#" target="_blank" class="btn zj" id="download-link"><span class="icon"></span>
+                                <span class="text">慕课网主页</span></a>
+                        </div>
+                    </div>
+                    <div id="courseItem" class="item">
+                        <div class="expdiv-list">
+                            <a href="#" target="_blank" class="btn zj" id="A4"><span class="icon"></span>
+                                <span class="text">前端课程</span></a>
+                            <a href="#" target="_blank" class="btn zj" id="A5"><span class="icon"></span>
+                                <span class="text">手机开发</span></a>
+                            <a href="#" target="_blank" class="btn zj" id="A6"><span class="icon"></span>
+                                <span class="text">后台编程</span></a>
+                        </div>
+                    </div>
+                    <div id="learnItem" class="item">
+                        <div class="expdiv-list">
+                            <a href="#" target="_blank" class="btn zj" id="A1"><span class="icon"></span>
+                                <span class="text">Javascript</span></a>
+                            <a href="#" target="_blank" class="btn zj" id="A2"><span class="icon"></span>
+                                <span class="text">CSS</span></a>
+                            <a href="#" target="_blank" class="btn zj" id="A3"><span class="icon"></span>
+                                <span class="text">JQuery</span></a>
+                        </div>
+                    </div>
+                    <div id="personalItem" class="item">
+                        <div class="expdiv-list">
+                            个人信息：
+                        </div>
+                    </div>
+                    <div id="aboutItem" class="item">
+                        <div class="expdiv-list">
+                            公司地址：北京市西城区德外大街10号
+                        </div>
+                    </div>
+                </div>
+                <div id="closeBtn" class="close-btn">
+                </div>
+            </div>
+            <div class="nav-bottom-bg">
+            </div>
+        </div>
+    </div>
+    <!-- 代码 结束 -->
+</body>
+
+</html>

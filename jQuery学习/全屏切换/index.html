@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>全屏切换</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html,body {
+    	height: 100%;
+    }
+
+    body {
+    	/*overflow: hidden;*/
+    }
+
+    #container,.sections,.section {
+    	height: 100%;
+    }
+
+    .l {
+    	float: left;
+    }
+
+    .sections {
+    	width: 400%;
+    }
+
+    .section {
+    	width: 25%;
+    }
+
+
+
+
+    
+    #section0,
+    #section1,
+    #section2,
+    #section3 {
+        background-color: #000;
+        background-size: cover;
+        background-position: 50% 50%;
+        text-align: center;
+    }
+    
+    #section0 {
+        background-image: url(images/1.jpg);
+        color: #fff;
+        text-shadow: 1px 1px 1px #333;
+    }
+    
+    #section1 {
+        color: #fff;
+        text-shadow: 1px 1px 1px #333;
+        background-image: url(images/2.jpg);
+    }
+    
+    #section2 {
+        background-image: url(images/3.jpg);
+        color: #fff;
+        text-shadow: 1px 1px 1px #666;
+    }
+    
+    #section3 {
+        color: #008283;
+        background-image: url(images/4.jpg);
+        text-shadow: 1px 1px 1px #fff;
+    }
+    </style>
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div class="sections">
+            <div class="section l" id="section0">
+                <h3>this is the page</h3>
+            </div>
+            <div class="section l" id="section1">
+                <h3>this is the page</h3>
+            </div>
+            <div class="section l" id="section2">
+                <h3>this is the page</h3>
+            </div>
+            <div class="section l" id="section3">
+                <h3>this is the page</h3>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

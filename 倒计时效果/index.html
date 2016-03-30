@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时效果</title>
+	<script>
+		window.onload = function(){
+			function showTime(){
+				function checkTime(timevalue){
+					if(timevalue<10){
+						timevalue="0"+timevalue;
+					}
+					return timevalue;
+				}
+				var myDate = new Date();
+				var year = myDate.getFullYear();
+				var month = myDate.getMonth()+1;
+				var date = myDate.getDate();
+				var day = myDate.getDay();
+				var h = myDate.getHours();
+				var m = myDate.getMinutes();
+				var s = myDate.getSeconds();
+				s=checkTime(s);
+				m=checkTime(m);
+
+				var weekday = new Array();
+				weekday[0]='星期日';
+				weekday[1]='星期一';
+				weekday[2]='星期二';
+				weekday[3]='星期三';
+				weekday[4]='星期四';
+				weekday[5]='星期五';
+				weekday[6]='星期六';
+				document.getElementById('show').innerHTML = year+'年'+month+'月'+date+'日'+weekday[day]+h+':'+m+':'+s;
+				setTimeout(showTime,50);
+			}
+			showTime();
+
+			var gaokao = new Date('2016,6,6,0:0:0');
+			var gaokaonow = new Date();
+			var interval = (gaokao - gaokaonow)/1000/60/60/24; //将毫秒转换成天数
+			intervalday=Math.ceil(interval); //向上取整
+			document.getElementById('gaokao').innerHTML=intervalday;
+
+			function qg_count(){ //left_h_t t代表没有取整的小时或者分钟...数
+				var now = new Date();
+				var qg_endtime= new Date('2016,12,31,18:32:00');
+				//下面注释的实现方法很笨，换一种
+				// var qg_interval=(qg_endtime-now); //毫秒数
+				// var qg_interval_d=qg_interval/1000/60/60/24; //天数
+				// var left_d=Math.floor(qg_interval_d);
+				// document.getElementById('date').innerHTML=left_d;
+
+				// var left_h_t=(qg_interval_d-left_d)*24;
+				// var left_h=Math.floor(left_h_t);
+				// document.getElementById('h').innerHTML=left_h;
+
+				// var left_m_t=(left_h_t-left_h)*60;
+				// var left_m=Math.floor(left_m_t);
+				// document.getElementById('m').innerHTML=left_m;
+
+				// var left_s_t=(left_m_t-left_m)*60;
+				// var left_s=Math.floor(left_s_t);
+				// document.getElementById('s').innerHTML=left_s;	
+				
+				var qg_interval=(qg_endtime-now);
+				var d=parseInt(qg_interval/1000/60/60/24);
+				var h=parseInt(qg_interval/1000/60/60%24);
+				var m=parseInt(qg_interval/1000/60%60);
+				var s=parseInt(qg_interval/1000%60);
+				document.getElementById('qg').innerHTML= d+'天'+h+'小时'+m+'分钟'+s+'秒';
+				if(qg_interval<=0){ 
+					document.getElementById('qg').innerHTML= '抢购结束';
+					return;
+				}
+				//傻，之前我的方案是 （d===0 && h===0 && m===0 && s===0）
+				setTimeout(qg_count, 500);				
+			}
+			qg_count();
+			
+		}
+	</script>
+</head>
+<body>
+	<div id="show">显示时间位置</div>
+	<div>距离高考2016.6.6还有<span id='gaokao'></span>天</div> 
+	<div>距离16.12.31抢购截止还剩<span id='qg'></span></div>
+</body>
+</html>
