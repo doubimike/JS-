@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery UI</title>
+	<link rel="stylesheet" href="jquery-ui-1.11.4/jquery-ui.min.css">
+</head>
+<body>
+<input type="text" name="date" id="date" />
+<div id="slider">
+	test
+</div>
+
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="jquery-ui-1.11.4/jquery-ui.min.js"></script>
+	<script>
+		$('#date').datepicker();
+		$('#slider').slider({
+			orientation: "vertical"
+		});
+	</script>
+</body>
+</html>

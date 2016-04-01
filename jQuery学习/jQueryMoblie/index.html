@@ -1,42 +1,198 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/script.js"></script>
 </head>
 
 <body>
     <div data-role="page" id="index">
         <div data-role="header">
-            <h1>header</h1>
+            <h2>列车时刻表查询</h2>
         </div>
         <div role="main" class="ui-content">
-            <p>content</p>
+            <form>
+                <div class="ui-field-contain">
+                    <label for="">发车站：</label>
+                    <input type="text" id="startStation">
+                    <label for="">终点站：</label>
+                    <input type="text" id="finalStation">
+                    <label for="">车次：</label>
+                    <input type="text" id="trainNum">
+                </div>
+                <input type="submit" value="搜索" id="search-btn">
+            </form>
+            <ul data-role="listview" data-inset="true" id="list">
+            </ul>
         </div>
-        <div data-role="footer">
-            <h2>footer</h2>
+        <div data-role="footer" data-position='fixed'>
+            <div data-role="navbar">
+                <ul data-role="listview">
+                    <li>
+                        <a href="">查询</a>
+                    </li>
+                    <li><a href="">收藏</a>
+                    </li>
+                    <li><a href="">设置</a></li>
+                </ul>
+            </div>
         </div>
     </div>
+    <div data-role="page" id="detail">
+        <div data-role="header" data-position="fixed">
+            <h1>列车时刻表查询</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <h2></h2>
+            <table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive">
+                <thead>
+                    <tr>
+                        <th data-priority="1">站名</th>
+                        <th data-priority="persist">到站时间</th>
+                        <th data-priority="persist">出发时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <a href="#" class="ui-btn ui-corner-all" data-rel="back">返回</a>
+        </div>
+        <div data-role="footer">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" data-icon="grid" class="ui-btn-active">查询</a></li>
+                    <li><a href="#" data-icon="star">收藏</a></li>
+                    <li><a href="#" data-icon="gear">设置</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+    var urlPre = 'http://crossorigin.me/';
+    var url1 = 'http://ws.webxml.com.cn/WebServices/TrainTimeWebService.asmx/getStationAndTimeByStationName?';
+    var url2 = 'http://ws.webxml.com.cn/WebServices/TrainTimeWebService.asmx/getStationAndTimeDataSetByLikeTrainCode?';
+    var url3 = "http://ws.webxml.com.cn/WebServices/TrainTimeWebService.asmx/getDetailInfoByTrainCode?UserID=";
 
-    <div data-role="page" id="index2">
-        <div data-role="header">
-            <h1>header2</h1>
-        </div>
-        <div role="main" class="ui-content">
-            <p>content2</p>
-        </div>
-        <div data-role="footer">
-            <h2>footer2 </h2>
-        </div>
-    </div>
-    
-    <script scr="js/jquery.min.js"></script>
-    <script src="js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/script.js"></script>
+    var getTrainList = function(e) {
+        e.preventDefault();
+        if (($('#startStation').val() && $('#finalStation').val()) || $('#trainNum').val()) {
+
+            var searchBtn = $(this);
+            searchBtn.button('option', 'disabled', true);
+
+            $.mobile.loading('show');
+
+            var _data = {};
+            _data.UserID = '';
+            var _url = url1;
+
+            if (!$('#trainNum').val()) {
+                _data.ArriveStation = $('#finalStation').val();
+                _data.StartStation = $('#startStation').val();
+
+            } else {
+                _data.TrainCode = $('#trainNum').val();
+                _url = url2;
+            }
+
+
+
+            $.get(urlPre + _url, _data, function(data) {
+                var lists = $(data).find('TimeTable');
+                var _arr = [];
+                lists.each(function(index, el) {
+                    var i = index;
+                    if (i > 10) {
+                        return false
+                    };
+
+                    var that = $(this);
+                    if (that.find('TrainStation').text() == '数据没有被发现') {
+                        alert('数据没有被发现');
+                        return false;
+                    }
+
+                    var _html = '<li><a href="#" data-no="' + that.find("TrainCode").text() + '">' +
+                        '<h2>' + that.find("TrainCode").text() + '次</h2>' +
+                        '<p>' + that.find("FirstStation").text() + ' - ' + that.find("LastStation").text() + '</p>' +
+                        '<p>用时：' + that.find("UseDate").text() + '</p>' +
+                        '<p class="ui-li-aside">' + that.find("StartTime").text() + ' 开</p>' +
+                        '</a></li>';
+
+
+                    _arr.push(_html);
+                });
+
+                if (_arr.length > 0) {
+                    $('#list').html(_arr.join(''));
+                    $('#list').listview('refresh');
+                }
+
+                $.mobile.loading('hide');
+                searchBtn.button('option', 'disabled', false);
+            });
+        } else {
+            alert('请输入发车站和终点站或者车次')
+        }
+    };
+
+    var isAjax = false;
+
+    var getInfoByTrainCode = function() {
+
+        $.mobile.loading("show");
+
+
+
+        var trainCode = $(this).attr("data-no");
+
+        if (isAjax) return;
+        isAjax = true
+
+        $.get(urlPre + url3, {
+                TrainCode: trainCode
+            },
+            function(data) {
+                isAjax = false
+                $("#detail").find(".ui-content h2").html(trainCode + "次");
+                var tbody = $("#detail").find(".ui-content tbody");
+                tbody.html("");
+
+                $(data).find("TrainDetailInfo").each(function(index, obj) {
+                    var tr = $("<tr></tr>");
+                    var that = $(this);
+                    tr.html('<td>' + that.find("TrainStation").text() + '</td>' +
+                        '<td>' + that.find("ArriveTime").text() + '</td>' +
+                        '<td>' + that.find("StartTime").text() + '</td>');
+                    tbody.append(tr);
+                });
+
+                $.mobile.loading("hide");
+
+                $.mobile.changePage("#detail");
+            });
+
+
+
+
+
+    };
+
+    var bindEvent = function() {
+        $('#search-btn').click(getTrainList);
+
+        $('#list').on('click', 'a', getInfoByTrainCode);
+    };
+
+    $(document).on('pageinit', '#index', function() {
+        bindEvent();
+    });
+    </script>
 </body>
 
 </html>
