@@ -17,8 +17,14 @@
   },
   "devDependencies": {
     "grunt": "^1.0.1",
-    "grunt-contrib-watch": "^1.0.0",
-    "livereload": "^0.4.1"
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-nodemon": "^0.4.2",
+    "jshint-stylish": "latest"
   },
   "main": "app.js",
   "author": "",
