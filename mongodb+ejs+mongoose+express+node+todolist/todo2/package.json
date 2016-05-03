@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "grunt": "^1.0.1",
+    "grunt-concurrent": "^2.3.0",
     "grunt-contrib-cssmin": "latest",
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-less": "latest",
@@ -26,7 +27,7 @@
     "grunt-nodemon": "^0.4.2",
     "jshint-stylish": "latest"
   },
-  "main": "app.js",
+  "main": "./bin/www",
   "author": "",
   "license": "ISC",
   "description": ""

@@ -11,19 +11,16 @@
 	  <input type="submit">
 	</form>
 
-	<% if (user.uid.length > 0) { %>
-	<a href="#"><%= user.uid%></a>
-	<% } else { %>
-	<a href="#">Login</a>
-	<% } %>
-
 	<% todos.forEach(function(todo){ %>
-	  <p><%= todo.content %></p>
+	  <p><%= todo.content %><span>
+      <a href="/destroy/<%= todo._id %>" title="Delete this todo item">Delete</a>
+    </span></p>
 	<% }) %>
 
 	<input type="text" id="test"><span id="test2"></span>
 
 	<input type="text" id="post"><span id="postshow"></span>
+	
 
 	<script src="/jquery/dist/jquery.min.js"></script>
 	<script>
