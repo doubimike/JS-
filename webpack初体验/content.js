@@ -1,0 +1,1 @@
+module.exports = "<strong>TEST</strong> It works from content.js.";

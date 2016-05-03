@@ -1,0 +1,12 @@
+<% include ../partials/head %>
+
+<body>
+	<% include ../partials/header %>
+	<div><%=message%></div>
+	<ul>
+		<%movies.forEach(function(movie){%>
+			<li><%=movie.title%></li>
+		<%});%>
+	</ul>
+</body>
+</html>

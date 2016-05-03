@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+	<form action="/create" method="post" accept-charset="utf-8">
+	  <input type="text" name="content" />
+	  <input type="submit">
+	</form>
+
+	<% if (user.uid.length > 0) { %>
+	<a href="#"><%= user.uid%></a>
+	<% } else { %>
+	<a href="#">Login</a>
+	<% } %>
+
+	<% todos.forEach(function(todo){ %>
+	  <p><%= todo.content %></p>
+	<% }) %>
+
+	<input type="text" id="test"><span id="test2"></span>
+
+	<input type="text" id="post"><span id="postshow"></span>
+
+	<script src="/jquery/dist/jquery.min.js"></script>
+	<script>
+		$('#test').on('keyup', function(event) {
+			event.preventDefault();
+			var val = $(this).val();
+			var data = {
+				'input':val
+			};
+			$.get('/test',data,function(data) {
+				$('#test2').html(data['hello']);
+			});
+		});
+
+		$('#post').on('keyup', function(event) {
+			event.preventDefault();
+			var val = $(this).val();
+			var data = {
+				'input':val
+			};
+			$.post('test',{test:val},function (res) {
+				 $('#postshow').html(res);
+			});
+		});
+
+
+	</script>
+  </body>
+</html>

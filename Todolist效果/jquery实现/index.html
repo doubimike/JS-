@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Todolist</title>
+</head>
+
+<body>
+    <p>将下面输入的文字放入todo list中！</p>
+    <input name="" id="input" cols="30" rows="10"></input>
+    <div class="result">
+        <div class="num"></div>
+        <ol class="todo">
+        </ol>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script>
+    (function() {
+        var $input = $('#input');
+        var $todo = $('.todo');
+
+        function count() {
+            var l = $todo.children().length;
+            $('.num').html(l > 0 ? '现在有' + l + '项todo list' : '');
+        }
+
+        $input.on('keyup', function(event) {
+            val = $input.val();
+            if (event.keyCode == 13 && val) {
+                $todo.append('<li>' + val + '<button class="closebtn">x</button></li>');
+                $input.val('');
+                count();
+            }
+        });
+        
+        $todo.on('click', '.closebtn', function(event) {
+            $(this).parent().remove();
+            count();
+        });
+    }());
+    </script>
+</body>
+
+</html>

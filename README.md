@@ -14,6 +14,8 @@
 * Browserify
 * Component 
 * Duo
+* jQuery Mobile
+* jQuery UI
 
 ###Ps:
 * 针对前端工程自动化及偏后端的诸如Node.js，React，AngularJS，Grunt等知识，保持着最简单的了解。

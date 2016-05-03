@@ -1,0 +1,23 @@
+{
+  "name": "nodemongodb",
+  "version": "1.0.0",
+  "description": "nm",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "moment": "^2.13.0",
+    "grunt": "^1.0.1",
+    "jade": "^1.11.0",
+    "mongoose": "^4.4.14",
+    "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-nodemon": "^0.4.2"
+  }
+}
