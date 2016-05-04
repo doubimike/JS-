@@ -1,0 +1,18 @@
+{
+  "name": "jqsourcecode",
+  "homepage": "https://github.com/doubimike/JS-jQuery-Learning",
+  "authors": [
+    "mike.zhang <mike.zhang@yeamoney.cn>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
