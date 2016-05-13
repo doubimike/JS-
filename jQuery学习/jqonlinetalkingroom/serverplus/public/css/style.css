@@ -14,4 +14,26 @@ h3, .btn {
 body {
   /*background-color: red;*/ }
 
+ul {
+  list-style: none; }
+
+.chatroom,
+.online,
+.input-content {
+  border: 1px solid #ccc; }
+
+.input-content,
+.container {
+  padding: 20px; }
+
+.input-content {
+  clear: both; }
+
+.container .chatroom {
+  width: 65%;
+  float: left; }
+.container .online {
+  width: 25%;
+  float: right; }
+
 /*# sourceMappingURL=style.css.map */

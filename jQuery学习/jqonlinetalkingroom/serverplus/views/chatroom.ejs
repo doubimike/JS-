@@ -1,7 +1,27 @@
 <% include header %>
-<div class="goog">
-	good
+<div class="container">
+	<div class="chatroom">
+		<h2>聊天室</h2>
+		<div class="chat-cont">
+		</div>
+	</div>
+	<div class="online">
+		<h3>当前在线人数</h3>
+		<div class="online-num"><%= onlineMan.length %></div>
+			<ul class="online-detail">
+				<% onlineMan.forEach(function(m){ %>
+					<li><img src="" alt="avatar" class="avatar"><span class="name"> <%= m.name %> </span></li>
+				<% }); %>
+			</ul>
+		</div>
+	</div>
+	<div class="input-content">
+		<div id="area-face"></div>
+		<textarea name="" id="txt-input" cols="30" rows="10"></textarea>
+		<button id="send">发送</button>
+		<div class="input-tips"></div>
+	</div>
 </div>
 <script src="/js/jquery.js"></script>
-<script src="/js/script.js"></script>
+<script src="/js/chat.js"></script>
 <% include footer %>

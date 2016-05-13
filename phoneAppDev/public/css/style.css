@@ -1,0 +1,17 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+* {
+  -webkit-appearance: none; }
+
+.img {
+  width: 100px;
+  height: 100px;
+  background-image: url(../img/group.png);
+  background: -webkit-image-set(url(../img/group.png) 1x, url(../img/group@2x.png) 2x) center no-repeat; }
+
+/*# sourceMappingURL=style.css.map */

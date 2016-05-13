@@ -1,0 +1,87 @@
+<% include header %>
+
+  <h1><%-title %></h1>
+  <p>Welcome to <%-title %></p>
+
+  <input type="month">
+
+  <input type="color">
+
+  <input type="data">
+
+  18611210114
+
+  <div class="img"></div>
+
+  <input type="file">
+
+  <input type="file" accept="image/*">
+
+  <input type="file" accept="video/*">
+<input type="email">
+
+<input type="url">
+<input type="tel">
+<input type="search">
+
+<input type="text" id="input">
+
+<div class="tip"></div>
+
+<script src="../../components/jquery/dist/jquery.js"></script>
+
+<script>
+var tip = document.getElementsByClassName('tip')[0];
+	document.ontouchstart = function () {
+		 tip.innerHTML = 'start'
+	};
+
+	document.ontouchmove = function () {
+		 tip.innerHTML = 'move'
+	};
+
+
+	document.ontouchend	 = function () {
+		 tip.innerHTML = 'end'
+	};
+
+	var input = document.getElementById('input');
+
+	// input.onkeydown = function  () {
+	// 	tip.innerHTML = 'down';	  
+	// }
+
+	// input.onkeyup = function  () {
+	// 	tip.innerHTML = 'up';	  
+	// }
+
+	// input.onkeypress = function  () {
+	// 	tip.innerHTML = 'press';	  
+	// }
+
+	$('#input').keyup(function(){
+          alert('keyup function is running!!');
+        });
+
+	$('#input').keydown(function(event){
+		var key_code = event.keyCode;
+		if (key_code==13)
+		{
+		  console.log('a');
+		}
+	});
+
+	   $('#input').keyup(function(){
+          console.log('keyup');
+           });
+        $('#input').keydown(function(){
+          console.log('keydown');
+           });
+        $('#input').keypress(function(){
+          console.log('keypress');
+           });
+
+
+</script>
+
+<% include footer %>

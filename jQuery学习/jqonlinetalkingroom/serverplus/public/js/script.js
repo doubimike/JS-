@@ -1,8 +1,6 @@
 // 点击登录，显示正在请求
 $('#login-btn').on('click', function(event) {
     event.preventDefault();
-
-
     userLogin();
 });
 
@@ -13,6 +11,8 @@ function userLogin(usr, pass) {
 
     if (!usr) {
         $('#msg').html('用户名不能为空');
+        $('#username').focus();
+        return false;
     } else if (!pass) {
         $('#msg').html('密码不能为空');
     } else {
@@ -20,13 +20,15 @@ function userLogin(usr, pass) {
             usr: usr,
             pass: pass
         }, function(data, textStatus, xhr) {
-            // $('#msg').html('用户或者密码不匹配');
+            if (data == 1) {
+                window.location = '/chatroom';
+            }
         });
     }
 }
 
 // ajaxstart开始事件
-$(document).ajaxStart(function() {
+$('#document').ajaxStart(function() {
     $('#msg').html('正在发送ajax请求').show();
 });
 
