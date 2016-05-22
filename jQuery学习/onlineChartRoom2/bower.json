@@ -1,0 +1,18 @@
+{
+  "name": "ccr",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "zhanghang <mike.zhang@yeamoney.cn>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/doubimike/JS-",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
