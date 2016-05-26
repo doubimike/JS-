@@ -6,20 +6,21 @@
 </form>
 <ul class="todos">
 	<% todos.forEach(function(todo){ %>
-		<li><div class="content"><%- todo.content %></div>&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" href="/delete/<%- todo._id %>">x</a></li>
+	<li><div class="content"><%- todo.content %></div>&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" href="/delete/<%- todo._id %>">x</a></li>
 	<% }); %>
 </ul>
-
 <script>
 	var todos = document.getElementsByClassName('content');
 	document.addEventListener('click', function (event) {
-		var this = this.
 		if (event.target.className =='content') {
-			console.log('yes');
-			var _html = 
-		};
+			var clicked = event.target;
+			var _html = clicked.innerHTML;
 
+			var newNode = document.createElement('input');
+			clicked.innerHTML='';
+			newNode.setAttribute('value', _html);
+			clicked.appendChild(newNode);
+		};
 	});
 </script>
-<% include footer %>
-
+<% include footer html%>
