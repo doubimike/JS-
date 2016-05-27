@@ -1,0 +1,13 @@
+{
+	"parserOptions":{
+		"ecmaVerison":6,
+		"ecmaFeaturs":{
+			"jsx":true
+		}
+	},
+  "rules": {
+    "quotes": ["error", "single"],
+    "indent": ["error", 2],
+    "semi": [2, "always"]
+  }
+}
