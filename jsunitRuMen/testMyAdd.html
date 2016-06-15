@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>Test Add Function</title>
+ 
+    <script type="text/javascript" src="jsunit/app/jsUnitCore.js"></script>
+    <script type="text/javascript" src="myAdd.js"></script>
+ 
+</head>
+<body>
+<script type="text/javascript">
+    function setUp() {
+        // fixture setup before running a testcase
+    }
+ 
+    function tearDown() {
+        // anything to cleanup after running a testcase
+    }
+ 
+    function testAdd() {
+        assertEquals("ttt", 3, add(2, 1));
+    }
+ 
+    function testAdd2() {
+        assertNotEquals("tttt", 3, add(2, 1));
+        fail('ttt');
+    }
+
+    function testAdd3() {
+        assertTrue("tttt", add(2, 1));
+        fail('ttt');
+    }
+</script>
+</body>
+</html>
