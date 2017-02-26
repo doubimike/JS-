@@ -1,0 +1,26 @@
+{
+  "name": "livereload",
+  "version": "1.0.0",
+  "description": "t",
+  "main": "server.js",
+  "scripts": {
+    "test": "t"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "livereload"
+  ],
+  "author": "mike",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.4.2",
+    "express": "^4.13.4",
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-develop": "^0.4.0",
+    "grunt-express": "^1.4.1"
+  }
+}
